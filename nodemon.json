@@ -1,5 +1,5 @@
 {
-  "exec": "ts-node -r dotenv/config src/DiscordBot.ts",
+  "exec": "pnpm build && pnpm start",
   "ext": "ts",
   "watch": [".env", "src"]
 }

@@ -1,12 +1,12 @@
 import { type CommandInteraction } from 'discord.js';
 import { Client, Discord, Slash } from 'discordx';
-import get from 'lodash/get';
-import join from 'lodash/join';
-import map from 'lodash/map';
-import sortBy from 'lodash/sortBy';
+import get from 'lodash/get.js';
+import join from 'lodash/join.js';
+import map from 'lodash/map.js';
+import sortBy from 'lodash/sortBy.js';
 
 @Discord()
-export class Common {
+class Common { // eslint-disable-line @typescript-eslint/no-unused-vars
   @Slash({ name: 'ping', description: 'Ping the bot. Responds with `pong!`' })
   async ping(interaction: CommandInteraction): Promise<void> {
     await interaction.reply('pong!');
@@ -29,5 +29,3 @@ export class Common {
     );
   }
 }
-
-export default Common;

@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
-    "emitDecoratorMetadata": false,
+    "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "lib": ["ESNext", "ESNext.AsyncIterable"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "noEmit": true,
+    "noEmit": false,
     "noImplicitAny": true,
     "noUncheckedIndexedAccess": true,
     "outDir": "build",
@@ -17,6 +19,17 @@
     "strict": true,
     "strictNullChecks": true,
     "target": "ESNext"
+  },
+  "ts-node": {
+    "esm": false,
+    "files": true,
+    "compilerOptions": {
+      "experimentalDecorators": true,
+      "noEmit": false,
+      "module": "CommonJs",
+      "target": "ESNext",
+    },
+    "require": ["dotenv/config"]
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*"],

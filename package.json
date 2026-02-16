@@ -5,7 +5,7 @@
   "main": "src/DiscordBot.ts",
   "type": "module",
   "scripts": {
-    "build": "tsc --build",
+    "build": "tsup src --format esm --dts --out-dir build",
     "coverage": "open ./coverage/lcov-report/index.html",
     "dev": "nodemon",
     "git:update": "git add -u",
@@ -18,7 +18,7 @@
     "pretty:all": "pretty-quick",
     "pretty:staged": "pretty-quick --staged",
     "prettylint:all": "run-s pretty:all lint:all",
-    "start": "node build/DiscordBot.js"
+    "start": "node -r dotenv/config build/DiscordBot.js"
   },
   "keywords": [],
   "author": "",
@@ -48,6 +48,7 @@
     "@babel/preset-env": "^7.29.0",
     "@babel/preset-typescript": "^7.28.5",
     "@eslint/js": "^10.0.1",
+    "@swc/core": "^1.15.11",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.2.3",
     "@typescript-eslint/eslint-plugin": "^8.55.0",
@@ -70,6 +71,7 @@
     "pretty-quick": "^4.2.2",
     "ts-jest": "^29.4.6",
     "ts-jest-resolver": "^2.0.1",
+    "tsup": "^8.5.1",
     "typescript-eslint": "^8.55.0"
   }
 }
