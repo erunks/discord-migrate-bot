@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "./generated/prisma"
+  engineType = "client"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Guild {
+  id Int @id @default(autoincrement())
+  name String
+  externalId String @unique
+  channels Channel[]
+  roles Role[]
+}
+
+model Role {
+  id Int @id @default(autoincrement())
+  name String
+  externalId String @unique
+  permissions Json
+  guildId Int
+  guild Guild @relation(fields: [guildId], references: [id])
+  channels ChannelRole[]
+}
+
+model Channel {
+  id Int @id @default(autoincrement())
+  name String
+  type String
+  externalId String @unique
+  permissions Json
+  flags Json
+  guildId Int
+  guild Guild @relation(fields: [guildId], references: [id])
+  roles ChannelRole[]
+}
+
+model ChannelRole {
+  id Int @id @default(autoincrement())
+  channelId Int
+  roleId Int
+  permissions Json
+  channel Channel @relation(fields: [channelId], references: [id])
+  role Role @relation(fields: [roleId], references: [id])
+}

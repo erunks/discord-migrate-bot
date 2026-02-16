@@ -7,7 +7,7 @@
     "importHelpers": true,
     "lib": ["ESNext", "ESNext.AsyncIterable"],
     "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "node",
     "noEmit": false,
     "noImplicitAny": true,
     "noUncheckedIndexedAccess": true,
@@ -27,6 +27,7 @@
       "experimentalDecorators": true,
       "noEmit": false,
       "module": "CommonJs",
+      "moduleResolution": "node",
       "target": "ESNext",
     },
     "require": ["dotenv/config"]
