@@ -5,7 +5,7 @@
   "main": "src/DiscordBot.ts",
   "type": "module",
   "scripts": {
-    "build": "tsup src --format esm --dts --out-dir build",
+    "build": "tsup src --config tsup.config.ts",
     "coverage": "open ./coverage/lcov-report/index.html",
     "dev": "nodemon",
     "git:update": "git add -u",

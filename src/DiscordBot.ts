@@ -33,9 +33,9 @@ export class DiscordBot {
     });
 
     this._client.once(Events.ClientReady, () => {
-      this._client.clearApplicationCommands(
-        ...this._client.guilds.cache.map((guild) => guild.id),
-      );
+      // this._client.clearApplicationCommands(
+      //   ...this._client.guilds.cache.map((guild) => guild.id),
+      // );
 
       this._client.initApplicationCommands();
       this._client.initEvents();
@@ -49,6 +49,10 @@ export class DiscordBot {
 
     this._client.on(Events.MessageCreate, (message: Message) => {
       this._client.executeCommand(message);
+    });
+
+    this._client.on(Events.Error, (error) => {
+      console.error('An error occurred:', error); // eslint-disable-line no-console
     });
 
     await importx(`${dirname(import.meta.url)}/commands/**/*.{js,ts}`);
