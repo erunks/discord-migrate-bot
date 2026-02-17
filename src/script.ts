@@ -12,6 +12,14 @@ async function main() {
   // Fetch all guilds
   const allGuilds = await prisma.guild.findMany()
   console.log('All guilds:', JSON.stringify(allGuilds, null, 2))
+
+  // Remove the guild record
+  await prisma.guild.deleteMany({
+    where: {
+      externalId: '1234567890',
+    },
+  })
+  console.log('Deleted guild with externalId 1234567890')
 }
 
 main()

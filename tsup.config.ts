@@ -2,7 +2,12 @@ import { defineConfig } from "tsup";
 
 export default defineConfig({
   clean: true,
-  format: ["esm"],
   dts: false,
+  format: ["esm"],
+  loader: {
+    ".prisma": "file",
+    ".sql": "file",
+    ".toml": "file",
+  },
   outDir: "build",
 });
