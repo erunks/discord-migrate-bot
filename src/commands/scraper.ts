@@ -15,12 +15,12 @@ class Scraper {
 
       await interaction.reply('Scraping data...');
 
-      const guildRecord = await prisma.guild.findUnique({
+      let guildRecord = await prisma.guild.findUnique({
         where: { externalId: interaction.guildId },
       });
 
       if (!guildRecord) {
-        await prisma.guild.create({
+        guildRecord = await prisma.guild.create({
           data: {
             externalId: interaction.guildId,
             name: interaction.guild?.name || 'Unknown Guild',
@@ -31,8 +31,24 @@ class Scraper {
       const serverRoles: Array<Role> = [];
       await interaction.guild?.roles.fetch().then((roles) => {
         console.log(`Roles in the guild:`); // eslint-disable-line no-console
-        roles.map((role) => {
+        roles.map(async (role) => {
           serverRoles.push(role);
+
+          const roleRecord = await prisma.role.findUnique({
+            where: { externalId: role.id },
+          });
+
+          if (!roleRecord) {
+            await prisma.role.create({
+              data: {
+                externalId: role.id,
+                name: role.name,
+                guildId: guildRecord!.id,
+                permissions: role.permissions.toJSON()
+              },
+            });
+          }
+
           console.log(`- ${role.name}`); // eslint-disable-line no-console
           console.log(`  Permissions: ${role.permissions.toArray().join(', ')}`); // eslint-disable-line no-console
         });
