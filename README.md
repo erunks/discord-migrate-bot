@@ -13,7 +13,7 @@ The purpose of this bot is to scrape the setup information related to a Discord 
 
 ## Scraping the data from Discord
 - Run the bot `pnpm dev`
-- Invite the bot into one of the server(s) which is set under the `GUILD_IDS` env var
+- Invite the bot into one of the server(s) which is set under the `GUILD_IDS` env var. Make sure to use the [bot authorization](https://docs.discord.com/developers/topics/oauth2#bot-users) to grant it the right permissions (i.e. this is example taken from the docs `https://discord.com/oauth2/authorize?client_id=<CLIENT_ID>&scope=bot&permissions=1`).
 - Run the `/scrape` command
 
 ## Populating the data in Fluxer
