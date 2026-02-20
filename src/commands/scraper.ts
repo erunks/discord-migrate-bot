@@ -1,6 +1,7 @@
 import type { CommandInteraction, Role } from 'discord.js';
 import { Discord, Slash } from 'discordx';
 import { prisma } from '../lib/prisma';
+import type { ChannelRoleFindUniqueArgs } from '../prisma/generated/prisma/models/ChannelRole';
 
 @Discord()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -30,7 +31,6 @@ class Scraper {
 
       const serverRoles: Array<Role> = [];
       await interaction.guild?.roles.fetch().then((roles) => {
-        console.log(`Roles in the guild:`); // eslint-disable-line no-console
         roles.map(async (role) => {
           serverRoles.push(role);
 
@@ -44,34 +44,57 @@ class Scraper {
                 externalId: role.id,
                 name: role.name,
                 guildId: guildRecord!.id,
-                permissions: role.permissions.toJSON()
+                permissions: role.permissions.serialize(true),
               },
             });
           }
-
-          console.log(`- ${role.name}`); // eslint-disable-line no-console
-          console.log(`  Permissions: ${role.permissions.toArray().join(', ')}`); // eslint-disable-line no-console
         });
       });
 
       await interaction.guild?.channels.fetch().then((channels) => {
-        console.log(`Channels in the guild:`); // eslint-disable-line no-console
-        channels.map((channel) => {
+        channels.map(async (channel) => {
           if (!channel) {
             return;
           }
 
-          const channelType = channel.type || -1;
-          const channelName = channel.name || 'Unknown';
-
-          console.log(`- ${channelName} (${channelType})`); // eslint-disable-line no-console
-          serverRoles.forEach((role) => {
-            // eslint-disable-next-line no-console
-            console.log(
-              `  Permissions for ${role.name}: ${channel.permissionsFor(role)?.toArray().join(', ')}`,
-            );
+          let channelRecord = await prisma.channel.findUnique({
+            where: { externalId: channel.id },
           });
-          console.log(`  Flags: ${channel.flags.toArray().join(', ')}`); // eslint-disable-line no-console
+
+          if (!channelRecord) {
+            channelRecord = await prisma.channel.create({
+              data: {
+                externalId: channel.id,
+                name: channel.name || 'Unknown Channel',
+                type: channel.type.toString(),
+                guildId: guildRecord!.id,
+                flags: channel.flags.toJSON(),
+              },
+            });
+          }
+
+          serverRoles.forEach(async (role) => {
+            const roleRecord = await prisma.role.findUniqueOrThrow({
+              where: { externalId: role.id },
+            });
+
+            const channelRoleRecord = await prisma.channelRole.findUnique({
+              where: {
+                channelId: channelRecord.id,
+                roleId: roleRecord.id,
+              }
+            } as ChannelRoleFindUniqueArgs);
+            
+            if (!channelRoleRecord) {
+              await prisma.channelRole.create({
+                data: {
+                  channelId: channelRecord!.id,
+                  roleId: roleRecord.id,
+                  permissions: channel.permissionsFor(role)?.serialize(true) || [],
+                },
+              });
+            }
+          });
         });
       });
 

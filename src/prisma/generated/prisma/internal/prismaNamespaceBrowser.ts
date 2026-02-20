@@ -95,7 +95,6 @@ export const ChannelScalarFieldEnum = {
   name: 'name',
   type: 'type',
   externalId: 'externalId',
-  permissions: 'permissions',
   flags: 'flags',
   guildId: 'guildId'
 } as const

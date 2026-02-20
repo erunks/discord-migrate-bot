@@ -57,7 +57,6 @@ export type ChannelCountAggregateOutputType = {
   name: number
   type: number
   externalId: number
-  permissions: number
   flags: number
   guildId: number
   _all: number
@@ -95,7 +94,6 @@ export type ChannelCountAggregateInputType = {
   name?: true
   type?: true
   externalId?: true
-  permissions?: true
   flags?: true
   guildId?: true
   _all?: true
@@ -192,7 +190,6 @@ export type ChannelGroupByOutputType = {
   name: string
   type: string
   externalId: string
-  permissions: runtime.JsonValue
   flags: runtime.JsonValue
   guildId: number
   _count: ChannelCountAggregateOutputType | null
@@ -225,7 +222,6 @@ export type ChannelWhereInput = {
   name?: Prisma.StringFilter<"Channel"> | string
   type?: Prisma.StringFilter<"Channel"> | string
   externalId?: Prisma.StringFilter<"Channel"> | string
-  permissions?: Prisma.JsonFilter<"Channel">
   flags?: Prisma.JsonFilter<"Channel">
   guildId?: Prisma.IntFilter<"Channel"> | number
   guild?: Prisma.XOR<Prisma.GuildScalarRelationFilter, Prisma.GuildWhereInput>
@@ -237,7 +233,6 @@ export type ChannelOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   externalId?: Prisma.SortOrder
-  permissions?: Prisma.SortOrder
   flags?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
   guild?: Prisma.GuildOrderByWithRelationInput
@@ -252,7 +247,6 @@ export type ChannelWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ChannelWhereInput | Prisma.ChannelWhereInput[]
   name?: Prisma.StringFilter<"Channel"> | string
   type?: Prisma.StringFilter<"Channel"> | string
-  permissions?: Prisma.JsonFilter<"Channel">
   flags?: Prisma.JsonFilter<"Channel">
   guildId?: Prisma.IntFilter<"Channel"> | number
   guild?: Prisma.XOR<Prisma.GuildScalarRelationFilter, Prisma.GuildWhereInput>
@@ -264,7 +258,6 @@ export type ChannelOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   externalId?: Prisma.SortOrder
-  permissions?: Prisma.SortOrder
   flags?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
   _count?: Prisma.ChannelCountOrderByAggregateInput
@@ -282,7 +275,6 @@ export type ChannelScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Channel"> | string
   type?: Prisma.StringWithAggregatesFilter<"Channel"> | string
   externalId?: Prisma.StringWithAggregatesFilter<"Channel"> | string
-  permissions?: Prisma.JsonWithAggregatesFilter<"Channel">
   flags?: Prisma.JsonWithAggregatesFilter<"Channel">
   guildId?: Prisma.IntWithAggregatesFilter<"Channel"> | number
 }
@@ -291,7 +283,6 @@ export type ChannelCreateInput = {
   name: string
   type: string
   externalId: string
-  permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
   guild: Prisma.GuildCreateNestedOneWithoutChannelsInput
   roles?: Prisma.ChannelRoleCreateNestedManyWithoutChannelInput
@@ -302,7 +293,6 @@ export type ChannelUncheckedCreateInput = {
   name: string
   type: string
   externalId: string
-  permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
   guildId: number
   roles?: Prisma.ChannelRoleUncheckedCreateNestedManyWithoutChannelInput
@@ -312,7 +302,6 @@ export type ChannelUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
-  permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   guild?: Prisma.GuildUpdateOneRequiredWithoutChannelsNestedInput
   roles?: Prisma.ChannelRoleUpdateManyWithoutChannelNestedInput
@@ -323,7 +312,6 @@ export type ChannelUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
-  permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   guildId?: Prisma.IntFieldUpdateOperationsInput | number
   roles?: Prisma.ChannelRoleUncheckedUpdateManyWithoutChannelNestedInput
@@ -334,7 +322,6 @@ export type ChannelCreateManyInput = {
   name: string
   type: string
   externalId: string
-  permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
   guildId: number
 }
@@ -343,7 +330,6 @@ export type ChannelUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
-  permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -352,7 +338,6 @@ export type ChannelUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
-  permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   guildId?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -372,7 +357,6 @@ export type ChannelCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   externalId?: Prisma.SortOrder
-  permissions?: Prisma.SortOrder
   flags?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
 }
@@ -468,7 +452,6 @@ export type ChannelCreateWithoutGuildInput = {
   name: string
   type: string
   externalId: string
-  permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
   roles?: Prisma.ChannelRoleCreateNestedManyWithoutChannelInput
 }
@@ -478,7 +461,6 @@ export type ChannelUncheckedCreateWithoutGuildInput = {
   name: string
   type: string
   externalId: string
-  permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
   roles?: Prisma.ChannelRoleUncheckedCreateNestedManyWithoutChannelInput
 }
@@ -516,7 +498,6 @@ export type ChannelScalarWhereInput = {
   name?: Prisma.StringFilter<"Channel"> | string
   type?: Prisma.StringFilter<"Channel"> | string
   externalId?: Prisma.StringFilter<"Channel"> | string
-  permissions?: Prisma.JsonFilter<"Channel">
   flags?: Prisma.JsonFilter<"Channel">
   guildId?: Prisma.IntFilter<"Channel"> | number
 }
@@ -525,7 +506,6 @@ export type ChannelCreateWithoutRolesInput = {
   name: string
   type: string
   externalId: string
-  permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
   guild: Prisma.GuildCreateNestedOneWithoutChannelsInput
 }
@@ -535,7 +515,6 @@ export type ChannelUncheckedCreateWithoutRolesInput = {
   name: string
   type: string
   externalId: string
-  permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
   guildId: number
 }
@@ -560,7 +539,6 @@ export type ChannelUpdateWithoutRolesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
-  permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   guild?: Prisma.GuildUpdateOneRequiredWithoutChannelsNestedInput
 }
@@ -570,7 +548,6 @@ export type ChannelUncheckedUpdateWithoutRolesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
-  permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   guildId?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -580,7 +557,6 @@ export type ChannelCreateManyGuildInput = {
   name: string
   type: string
   externalId: string
-  permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -588,7 +564,6 @@ export type ChannelUpdateWithoutGuildInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
-  permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   roles?: Prisma.ChannelRoleUpdateManyWithoutChannelNestedInput
 }
@@ -598,7 +573,6 @@ export type ChannelUncheckedUpdateWithoutGuildInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
-  permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   roles?: Prisma.ChannelRoleUncheckedUpdateManyWithoutChannelNestedInput
 }
@@ -608,7 +582,6 @@ export type ChannelUncheckedUpdateManyWithoutGuildInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
-  permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
@@ -648,7 +621,6 @@ export type ChannelSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name?: boolean
   type?: boolean
   externalId?: boolean
-  permissions?: boolean
   flags?: boolean
   guildId?: boolean
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
@@ -661,7 +633,6 @@ export type ChannelSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   name?: boolean
   type?: boolean
   externalId?: boolean
-  permissions?: boolean
   flags?: boolean
   guildId?: boolean
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
@@ -672,7 +643,6 @@ export type ChannelSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   name?: boolean
   type?: boolean
   externalId?: boolean
-  permissions?: boolean
   flags?: boolean
   guildId?: boolean
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
@@ -683,12 +653,11 @@ export type ChannelSelectScalar = {
   name?: boolean
   type?: boolean
   externalId?: boolean
-  permissions?: boolean
   flags?: boolean
   guildId?: boolean
 }
 
-export type ChannelOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "type" | "externalId" | "permissions" | "flags" | "guildId", ExtArgs["result"]["channel"]>
+export type ChannelOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "type" | "externalId" | "flags" | "guildId", ExtArgs["result"]["channel"]>
 export type ChannelInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
   roles?: boolean | Prisma.Channel$rolesArgs<ExtArgs>
@@ -712,7 +681,6 @@ export type $ChannelPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     name: string
     type: string
     externalId: string
-    permissions: runtime.JsonValue
     flags: runtime.JsonValue
     guildId: number
   }, ExtArgs["result"]["channel"]>
@@ -1144,7 +1112,6 @@ export interface ChannelFieldRefs {
   readonly name: Prisma.FieldRef<"Channel", 'String'>
   readonly type: Prisma.FieldRef<"Channel", 'String'>
   readonly externalId: Prisma.FieldRef<"Channel", 'String'>
-  readonly permissions: Prisma.FieldRef<"Channel", 'Json'>
   readonly flags: Prisma.FieldRef<"Channel", 'Json'>
   readonly guildId: Prisma.FieldRef<"Channel", 'Int'>
 }

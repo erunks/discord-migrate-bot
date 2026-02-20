@@ -34,7 +34,6 @@ model Channel {
   name String
   type String
   externalId String @unique
-  permissions Json
   flags Json
   guildId Int
   guild Guild @relation(fields: [guildId], references: [id])
