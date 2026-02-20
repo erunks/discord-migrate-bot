@@ -1,7 +1,9 @@
 import type { CommandInteraction, Role } from 'discord.js';
 import { Discord, Slash } from 'discordx';
 import { prisma } from '../lib/prisma';
+import type { ChannelUncheckedCreateInput } from '../prisma/generated/prisma/models/Channel';
 import type { ChannelRoleFindUniqueArgs } from '../prisma/generated/prisma/models/ChannelRole';
+import type { RoleUncheckedCreateInput } from '../prisma/generated/prisma/models/Role';
 
 @Discord()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -50,7 +52,7 @@ class Scraper {
                 mentionable: role.mentionable,
                 position: role.position,
                 permissions: role.permissions.serialize(true),
-              },
+              } as RoleUncheckedCreateInput,
             });
           }
         });
@@ -76,7 +78,7 @@ class Scraper {
                 guildId: guildRecord!.id,
                 flags: channel.flags.toJSON(),
                 position: channel.position,
-              },
+              } as ChannelUncheckedCreateInput,
             });
           }
 
