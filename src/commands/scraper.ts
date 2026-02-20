@@ -70,10 +70,12 @@ class Scraper {
             channelRecord = await prisma.channel.create({
               data: {
                 externalId: channel.id,
+                externalParentId: channel.parentId,
                 name: channel.name || 'Unknown Channel',
                 type: channel.type.toString(),
                 guildId: guildRecord!.id,
                 flags: channel.flags.toJSON(),
+                position: channel.position,
               },
             });
           }

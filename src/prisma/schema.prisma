@@ -39,7 +39,11 @@ model Channel {
   name String
   type String
   externalId String @unique
+  externalParentId String?
+  parent Channel? @relation("ChannelToParent", fields: [externalParentId], references: [externalId])
+  children Channel[] @relation("ChannelToParent")
   flags Json
+  position Int
   guildId Int
   guild Guild @relation(fields: [guildId], references: [id])
   roles ChannelRole[]
