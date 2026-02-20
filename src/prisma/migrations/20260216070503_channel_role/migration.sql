@@ -1,0 +1,8 @@
+-- CreateTable
+CREATE TABLE "ChannelRole" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "channelId" INTEGER NOT NULL,
+    "roleId" INTEGER NOT NULL,
+    CONSTRAINT "ChannelRole_channelId_fkey" FOREIGN KEY ("channelId") REFERENCES "Channel" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "ChannelRole_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "Role" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
