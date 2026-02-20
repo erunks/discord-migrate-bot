@@ -19,3 +19,7 @@ npm-debug.log*
 .env.*
 !.env.sample
 /prisma/generated/prisma
+
+# databse files
+*.db
+*.sqlite
