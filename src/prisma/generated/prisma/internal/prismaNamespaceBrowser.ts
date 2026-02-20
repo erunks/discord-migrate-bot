@@ -83,7 +83,12 @@ export const RoleScalarFieldEnum = {
   id: 'id',
   name: 'name',
   externalId: 'externalId',
+  colors: 'colors',
+  flags: 'flags',
+  hoist: 'hoist',
+  mentionable: 'mentionable',
   permissions: 'permissions',
+  position: 'position',
   guildId: 'guildId'
 } as const
 

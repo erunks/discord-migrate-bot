@@ -28,11 +28,13 @@ export type AggregateRole = {
 
 export type RoleAvgAggregateOutputType = {
   id: number | null
+  position: number | null
   guildId: number | null
 }
 
 export type RoleSumAggregateOutputType = {
   id: number | null
+  position: number | null
   guildId: number | null
 }
 
@@ -40,6 +42,9 @@ export type RoleMinAggregateOutputType = {
   id: number | null
   name: string | null
   externalId: string | null
+  hoist: boolean | null
+  mentionable: boolean | null
+  position: number | null
   guildId: number | null
 }
 
@@ -47,6 +52,9 @@ export type RoleMaxAggregateOutputType = {
   id: number | null
   name: string | null
   externalId: string | null
+  hoist: boolean | null
+  mentionable: boolean | null
+  position: number | null
   guildId: number | null
 }
 
@@ -54,7 +62,12 @@ export type RoleCountAggregateOutputType = {
   id: number
   name: number
   externalId: number
+  colors: number
+  flags: number
+  hoist: number
+  mentionable: number
   permissions: number
+  position: number
   guildId: number
   _all: number
 }
@@ -62,11 +75,13 @@ export type RoleCountAggregateOutputType = {
 
 export type RoleAvgAggregateInputType = {
   id?: true
+  position?: true
   guildId?: true
 }
 
 export type RoleSumAggregateInputType = {
   id?: true
+  position?: true
   guildId?: true
 }
 
@@ -74,6 +89,9 @@ export type RoleMinAggregateInputType = {
   id?: true
   name?: true
   externalId?: true
+  hoist?: true
+  mentionable?: true
+  position?: true
   guildId?: true
 }
 
@@ -81,6 +99,9 @@ export type RoleMaxAggregateInputType = {
   id?: true
   name?: true
   externalId?: true
+  hoist?: true
+  mentionable?: true
+  position?: true
   guildId?: true
 }
 
@@ -88,7 +109,12 @@ export type RoleCountAggregateInputType = {
   id?: true
   name?: true
   externalId?: true
+  colors?: true
+  flags?: true
+  hoist?: true
+  mentionable?: true
   permissions?: true
+  position?: true
   guildId?: true
   _all?: true
 }
@@ -183,7 +209,12 @@ export type RoleGroupByOutputType = {
   id: number
   name: string
   externalId: string
+  colors: runtime.JsonValue
+  flags: runtime.JsonValue
+  hoist: boolean
+  mentionable: boolean
   permissions: runtime.JsonValue
+  position: number
   guildId: number
   _count: RoleCountAggregateOutputType | null
   _avg: RoleAvgAggregateOutputType | null
@@ -214,7 +245,12 @@ export type RoleWhereInput = {
   id?: Prisma.IntFilter<"Role"> | number
   name?: Prisma.StringFilter<"Role"> | string
   externalId?: Prisma.StringFilter<"Role"> | string
+  colors?: Prisma.JsonFilter<"Role">
+  flags?: Prisma.JsonFilter<"Role">
+  hoist?: Prisma.BoolFilter<"Role"> | boolean
+  mentionable?: Prisma.BoolFilter<"Role"> | boolean
   permissions?: Prisma.JsonFilter<"Role">
+  position?: Prisma.IntFilter<"Role"> | number
   guildId?: Prisma.IntFilter<"Role"> | number
   guild?: Prisma.XOR<Prisma.GuildScalarRelationFilter, Prisma.GuildWhereInput>
   channels?: Prisma.ChannelRoleListRelationFilter
@@ -224,7 +260,12 @@ export type RoleOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   externalId?: Prisma.SortOrder
+  colors?: Prisma.SortOrder
+  flags?: Prisma.SortOrder
+  hoist?: Prisma.SortOrder
+  mentionable?: Prisma.SortOrder
   permissions?: Prisma.SortOrder
+  position?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
   guild?: Prisma.GuildOrderByWithRelationInput
   channels?: Prisma.ChannelRoleOrderByRelationAggregateInput
@@ -237,7 +278,12 @@ export type RoleWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.RoleWhereInput[]
   NOT?: Prisma.RoleWhereInput | Prisma.RoleWhereInput[]
   name?: Prisma.StringFilter<"Role"> | string
+  colors?: Prisma.JsonFilter<"Role">
+  flags?: Prisma.JsonFilter<"Role">
+  hoist?: Prisma.BoolFilter<"Role"> | boolean
+  mentionable?: Prisma.BoolFilter<"Role"> | boolean
   permissions?: Prisma.JsonFilter<"Role">
+  position?: Prisma.IntFilter<"Role"> | number
   guildId?: Prisma.IntFilter<"Role"> | number
   guild?: Prisma.XOR<Prisma.GuildScalarRelationFilter, Prisma.GuildWhereInput>
   channels?: Prisma.ChannelRoleListRelationFilter
@@ -247,7 +293,12 @@ export type RoleOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   externalId?: Prisma.SortOrder
+  colors?: Prisma.SortOrder
+  flags?: Prisma.SortOrder
+  hoist?: Prisma.SortOrder
+  mentionable?: Prisma.SortOrder
   permissions?: Prisma.SortOrder
+  position?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
   _count?: Prisma.RoleCountOrderByAggregateInput
   _avg?: Prisma.RoleAvgOrderByAggregateInput
@@ -263,14 +314,24 @@ export type RoleScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Role"> | number
   name?: Prisma.StringWithAggregatesFilter<"Role"> | string
   externalId?: Prisma.StringWithAggregatesFilter<"Role"> | string
+  colors?: Prisma.JsonWithAggregatesFilter<"Role">
+  flags?: Prisma.JsonWithAggregatesFilter<"Role">
+  hoist?: Prisma.BoolWithAggregatesFilter<"Role"> | boolean
+  mentionable?: Prisma.BoolWithAggregatesFilter<"Role"> | boolean
   permissions?: Prisma.JsonWithAggregatesFilter<"Role">
+  position?: Prisma.IntWithAggregatesFilter<"Role"> | number
   guildId?: Prisma.IntWithAggregatesFilter<"Role"> | number
 }
 
 export type RoleCreateInput = {
   name: string
   externalId: string
+  colors: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist: boolean
+  mentionable: boolean
   permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position: number
   guild: Prisma.GuildCreateNestedOneWithoutRolesInput
   channels?: Prisma.ChannelRoleCreateNestedManyWithoutRoleInput
 }
@@ -279,7 +340,12 @@ export type RoleUncheckedCreateInput = {
   id?: number
   name: string
   externalId: string
+  colors: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist: boolean
+  mentionable: boolean
   permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position: number
   guildId: number
   channels?: Prisma.ChannelRoleUncheckedCreateNestedManyWithoutRoleInput
 }
@@ -287,7 +353,12 @@ export type RoleUncheckedCreateInput = {
 export type RoleUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
+  colors?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mentionable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position?: Prisma.IntFieldUpdateOperationsInput | number
   guild?: Prisma.GuildUpdateOneRequiredWithoutRolesNestedInput
   channels?: Prisma.ChannelRoleUpdateManyWithoutRoleNestedInput
 }
@@ -296,7 +367,12 @@ export type RoleUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
+  colors?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mentionable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position?: Prisma.IntFieldUpdateOperationsInput | number
   guildId?: Prisma.IntFieldUpdateOperationsInput | number
   channels?: Prisma.ChannelRoleUncheckedUpdateManyWithoutRoleNestedInput
 }
@@ -305,21 +381,36 @@ export type RoleCreateManyInput = {
   id?: number
   name: string
   externalId: string
+  colors: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist: boolean
+  mentionable: boolean
   permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position: number
   guildId: number
 }
 
 export type RoleUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
+  colors?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mentionable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type RoleUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
+  colors?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mentionable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position?: Prisma.IntFieldUpdateOperationsInput | number
   guildId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -337,12 +428,18 @@ export type RoleCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   externalId?: Prisma.SortOrder
+  colors?: Prisma.SortOrder
+  flags?: Prisma.SortOrder
+  hoist?: Prisma.SortOrder
+  mentionable?: Prisma.SortOrder
   permissions?: Prisma.SortOrder
+  position?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
 }
 
 export type RoleAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  position?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
 }
 
@@ -350,6 +447,9 @@ export type RoleMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   externalId?: Prisma.SortOrder
+  hoist?: Prisma.SortOrder
+  mentionable?: Prisma.SortOrder
+  position?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
 }
 
@@ -357,11 +457,15 @@ export type RoleMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   externalId?: Prisma.SortOrder
+  hoist?: Prisma.SortOrder
+  mentionable?: Prisma.SortOrder
+  position?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
 }
 
 export type RoleSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  position?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
 }
 
@@ -412,6 +516,10 @@ export type RoleUncheckedUpdateManyWithoutGuildNestedInput = {
   deleteMany?: Prisma.RoleScalarWhereInput | Prisma.RoleScalarWhereInput[]
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type RoleCreateNestedOneWithoutChannelsInput = {
   create?: Prisma.XOR<Prisma.RoleCreateWithoutChannelsInput, Prisma.RoleUncheckedCreateWithoutChannelsInput>
   connectOrCreate?: Prisma.RoleCreateOrConnectWithoutChannelsInput
@@ -429,7 +537,12 @@ export type RoleUpdateOneRequiredWithoutChannelsNestedInput = {
 export type RoleCreateWithoutGuildInput = {
   name: string
   externalId: string
+  colors: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist: boolean
+  mentionable: boolean
   permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position: number
   channels?: Prisma.ChannelRoleCreateNestedManyWithoutRoleInput
 }
 
@@ -437,7 +550,12 @@ export type RoleUncheckedCreateWithoutGuildInput = {
   id?: number
   name: string
   externalId: string
+  colors: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist: boolean
+  mentionable: boolean
   permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position: number
   channels?: Prisma.ChannelRoleUncheckedCreateNestedManyWithoutRoleInput
 }
 
@@ -473,14 +591,24 @@ export type RoleScalarWhereInput = {
   id?: Prisma.IntFilter<"Role"> | number
   name?: Prisma.StringFilter<"Role"> | string
   externalId?: Prisma.StringFilter<"Role"> | string
+  colors?: Prisma.JsonFilter<"Role">
+  flags?: Prisma.JsonFilter<"Role">
+  hoist?: Prisma.BoolFilter<"Role"> | boolean
+  mentionable?: Prisma.BoolFilter<"Role"> | boolean
   permissions?: Prisma.JsonFilter<"Role">
+  position?: Prisma.IntFilter<"Role"> | number
   guildId?: Prisma.IntFilter<"Role"> | number
 }
 
 export type RoleCreateWithoutChannelsInput = {
   name: string
   externalId: string
+  colors: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist: boolean
+  mentionable: boolean
   permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position: number
   guild: Prisma.GuildCreateNestedOneWithoutRolesInput
 }
 
@@ -488,7 +616,12 @@ export type RoleUncheckedCreateWithoutChannelsInput = {
   id?: number
   name: string
   externalId: string
+  colors: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist: boolean
+  mentionable: boolean
   permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position: number
   guildId: number
 }
 
@@ -511,7 +644,12 @@ export type RoleUpdateToOneWithWhereWithoutChannelsInput = {
 export type RoleUpdateWithoutChannelsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
+  colors?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mentionable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position?: Prisma.IntFieldUpdateOperationsInput | number
   guild?: Prisma.GuildUpdateOneRequiredWithoutRolesNestedInput
 }
 
@@ -519,7 +657,12 @@ export type RoleUncheckedUpdateWithoutChannelsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
+  colors?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mentionable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position?: Prisma.IntFieldUpdateOperationsInput | number
   guildId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -527,13 +670,23 @@ export type RoleCreateManyGuildInput = {
   id?: number
   name: string
   externalId: string
+  colors: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist: boolean
+  mentionable: boolean
   permissions: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position: number
 }
 
 export type RoleUpdateWithoutGuildInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
+  colors?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mentionable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position?: Prisma.IntFieldUpdateOperationsInput | number
   channels?: Prisma.ChannelRoleUpdateManyWithoutRoleNestedInput
 }
 
@@ -541,7 +694,12 @@ export type RoleUncheckedUpdateWithoutGuildInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
+  colors?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mentionable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position?: Prisma.IntFieldUpdateOperationsInput | number
   channels?: Prisma.ChannelRoleUncheckedUpdateManyWithoutRoleNestedInput
 }
 
@@ -549,7 +707,12 @@ export type RoleUncheckedUpdateManyWithoutGuildInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
+  colors?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  flags?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  hoist?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  mentionable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   permissions?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  position?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -587,7 +750,12 @@ export type RoleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   id?: boolean
   name?: boolean
   externalId?: boolean
+  colors?: boolean
+  flags?: boolean
+  hoist?: boolean
+  mentionable?: boolean
   permissions?: boolean
+  position?: boolean
   guildId?: boolean
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
   channels?: boolean | Prisma.Role$channelsArgs<ExtArgs>
@@ -598,7 +766,12 @@ export type RoleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   name?: boolean
   externalId?: boolean
+  colors?: boolean
+  flags?: boolean
+  hoist?: boolean
+  mentionable?: boolean
   permissions?: boolean
+  position?: boolean
   guildId?: boolean
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["role"]>
@@ -607,7 +780,12 @@ export type RoleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   name?: boolean
   externalId?: boolean
+  colors?: boolean
+  flags?: boolean
+  hoist?: boolean
+  mentionable?: boolean
   permissions?: boolean
+  position?: boolean
   guildId?: boolean
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["role"]>
@@ -616,11 +794,16 @@ export type RoleSelectScalar = {
   id?: boolean
   name?: boolean
   externalId?: boolean
+  colors?: boolean
+  flags?: boolean
+  hoist?: boolean
+  mentionable?: boolean
   permissions?: boolean
+  position?: boolean
   guildId?: boolean
 }
 
-export type RoleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "externalId" | "permissions" | "guildId", ExtArgs["result"]["role"]>
+export type RoleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "externalId" | "colors" | "flags" | "hoist" | "mentionable" | "permissions" | "position" | "guildId", ExtArgs["result"]["role"]>
 export type RoleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
   channels?: boolean | Prisma.Role$channelsArgs<ExtArgs>
@@ -643,7 +826,12 @@ export type $RolePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     id: number
     name: string
     externalId: string
+    colors: runtime.JsonValue
+    flags: runtime.JsonValue
+    hoist: boolean
+    mentionable: boolean
     permissions: runtime.JsonValue
+    position: number
     guildId: number
   }, ExtArgs["result"]["role"]>
   composites: {}
@@ -1073,7 +1261,12 @@ export interface RoleFieldRefs {
   readonly id: Prisma.FieldRef<"Role", 'Int'>
   readonly name: Prisma.FieldRef<"Role", 'String'>
   readonly externalId: Prisma.FieldRef<"Role", 'String'>
+  readonly colors: Prisma.FieldRef<"Role", 'Json'>
+  readonly flags: Prisma.FieldRef<"Role", 'Json'>
+  readonly hoist: Prisma.FieldRef<"Role", 'Boolean'>
+  readonly mentionable: Prisma.FieldRef<"Role", 'Boolean'>
   readonly permissions: Prisma.FieldRef<"Role", 'Json'>
+  readonly position: Prisma.FieldRef<"Role", 'Int'>
   readonly guildId: Prisma.FieldRef<"Role", 'Int'>
 }
     

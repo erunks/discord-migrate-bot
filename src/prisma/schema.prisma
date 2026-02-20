@@ -23,7 +23,12 @@ model Role {
   id Int @id @default(autoincrement())
   name String
   externalId String @unique
+  colors Json
+  flags Json
+  hoist Boolean
+  mentionable Boolean
   permissions Json
+  position Int
   guildId Int
   guild Guild @relation(fields: [guildId], references: [id])
   channels ChannelRole[]

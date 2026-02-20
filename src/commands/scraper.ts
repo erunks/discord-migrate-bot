@@ -44,6 +44,11 @@ class Scraper {
                 externalId: role.id,
                 name: role.name,
                 guildId: guildRecord!.id,
+                colors: role.colors,
+                flags: role.flags.toJSON(),
+                hoist: role.hoist,
+                mentionable: role.mentionable,
+                position: role.position,
                 permissions: role.permissions.serialize(true),
               },
             });
