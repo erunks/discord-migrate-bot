@@ -11,6 +11,12 @@ importers:
       '@discordx/importer':
         specifier: ^1.3.3
         version: 1.3.3
+      '@fluxerjs/core':
+        specifier: ^1.2.1
+        version: 1.2.1
+      '@fluxerjs/types':
+        specifier: ^1.2.1
+        version: 1.2.1
       '@prisma/adapter-better-sqlite3':
         specifier: ^7.4.0
         version: 7.4.0
@@ -1028,6 +1034,28 @@ packages:
   '@eslint/plugin-kit@0.6.0':
     resolution: {integrity: sha512-bIZEUzOI1jkhviX2cp5vNyXQc6olzb2ohewQubuYlMXZ2Q/XjBO0x0XhGPvc9fjSIiUN0vw+0hq53BJ4eQSJKQ==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
+
+  '@fluxerjs/builders@1.2.1':
+    resolution: {integrity: sha512-fej0vD1C6YK2bY9wbKKNliwj4Xocsuty1VEn6qgUizMuhcFyUIz1aSL3c0MTsR2VTfZb1B1ARNYHOo6tpSlBjw==}
+
+  '@fluxerjs/collection@1.2.1':
+    resolution: {integrity: sha512-SIoWqeH3fFnQv81pMhvMpBx5D5eRONtqiDiYuP5X5Ox36uicuOPZba5ZboaIq6xBKFN6PIRvEHOLrKygfZvjig==}
+
+  '@fluxerjs/core@1.2.1':
+    resolution: {integrity: sha512-KmntwbJRqqkZtF7wwVSw9BAI6X9yMa8a4BUOnDGmu46LdXDl+YTZnaph3I+fBdJ3PEWb2MgYaqeVL4ZUjWRxwg==}
+    engines: {node: '>=18.0.0'}
+
+  '@fluxerjs/rest@1.2.1':
+    resolution: {integrity: sha512-StmWnUesHUVtnPKX5fl4zPU90WaU2vIxttXyZQi8DONyQqXVGlH6H5e/RSx8uCLGdRRqyaN+Ug+ms/Z4dUFHWw==}
+
+  '@fluxerjs/types@1.2.1':
+    resolution: {integrity: sha512-FEbffW4HOGZoKGj1lDYF1l+RbdizOATWgyiPtiAOI75BU7ksctax8PyOMdYGy0UrhsLgPvCGx/0WQkbG3l96Vg==}
+
+  '@fluxerjs/util@1.2.1':
+    resolution: {integrity: sha512-3puOy103li5tNyQeMjiXbCbmeXqzhJD9SIVWf21WeSjy7FCd8p8j56RM6l75ZVqU1gKDBj9xNf/E+b0pHEkIXQ==}
+
+  '@fluxerjs/ws@1.2.1':
+    resolution: {integrity: sha512-SBwwymsdMZYyjuqH8TMmQUjwj2yHMSV/s4Rtx+jeYegtpYB2+JnzbHGwcbIGlnBO1NoDBD+H4RcFOkIfkSp8ag==}
 
   '@hono/node-server@1.19.9':
     resolution: {integrity: sha512-vHL6w3ecZsky+8P5MD+eFfaGTyCeOHUIFYMGpQGbrBTSmNNoxv0if69rEZ5giu36weC5saFuznL411gRX7bJDw==}
@@ -5385,6 +5413,43 @@ snapshots:
     dependencies:
       '@eslint/core': 1.1.0
       levn: 0.4.1
+
+  '@fluxerjs/builders@1.2.1':
+    dependencies:
+      '@fluxerjs/types': 1.2.1
+      '@fluxerjs/util': 1.2.1
+
+  '@fluxerjs/collection@1.2.1': {}
+
+  '@fluxerjs/core@1.2.1':
+    dependencies:
+      '@fluxerjs/builders': 1.2.1
+      '@fluxerjs/collection': 1.2.1
+      '@fluxerjs/rest': 1.2.1
+      '@fluxerjs/types': 1.2.1
+      '@fluxerjs/util': 1.2.1
+      '@fluxerjs/ws': 1.2.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  '@fluxerjs/rest@1.2.1':
+    dependencies:
+      '@fluxerjs/types': 1.2.1
+
+  '@fluxerjs/types@1.2.1': {}
+
+  '@fluxerjs/util@1.2.1':
+    dependencies:
+      '@fluxerjs/types': 1.2.1
+
+  '@fluxerjs/ws@1.2.1':
+    dependencies:
+      '@fluxerjs/types': 1.2.1
+      ws: 8.19.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   '@hono/node-server@1.19.9(hono@4.11.4)':
     dependencies:
