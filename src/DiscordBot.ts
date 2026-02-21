@@ -27,7 +27,7 @@ export class DiscordBot {
       ],
       botGuilds: [
         (client) => client.guilds.cache.map((guild) => guild.id),
-        ...split(process.env.GUILD_IDS, ','),
+        ...split(process.env.DISCORD_GUILD_IDS, ','),
       ],
       silent: false,
     });
