@@ -55,7 +55,7 @@ export class DiscordBot {
       console.error('An error occurred:', error); // eslint-disable-line no-console
     });
 
-    await importx(`${dirname(import.meta.url)}/commands/**/*.{js,ts}`);
+    await importx(`${dirname(import.meta.url)}/commands/discord/**/*.{js,ts}`);
 
     if (process.env.DISCORD_BOT_TOKEN) {
       await this._client.login(process.env.DISCORD_BOT_TOKEN);

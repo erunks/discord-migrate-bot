@@ -1,9 +1,9 @@
 import type { CommandInteraction, Role } from 'discord.js';
 import { Discord, Slash } from 'discordx';
-import { prisma } from '../lib/prisma';
-import type { ChannelUncheckedCreateInput } from '../prisma/generated/prisma/models/Channel';
-import type { ChannelRoleFindUniqueArgs } from '../prisma/generated/prisma/models/ChannelRole';
-import type { RoleUncheckedCreateInput } from '../prisma/generated/prisma/models/Role';
+import { prisma } from '../../lib/prisma';
+import type { ChannelUncheckedCreateInput } from '../../prisma/generated/prisma/models/Channel';
+import type { ChannelRoleFindUniqueArgs } from '../../prisma/generated/prisma/models/ChannelRole';
+import type { RoleUncheckedCreateInput } from '../../prisma/generated/prisma/models/Role';
 
 @Discord()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
