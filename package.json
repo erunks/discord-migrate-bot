@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsup src --config tsup.config.ts",
     "coverage": "open ./coverage/lcov-report/index.html",
-    "dev": "nodemon",
+    "dev:discord": "nodemon --config nodemon.discord.json",
     "git:update": "git add -u",
     "lint:all": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
@@ -18,7 +18,7 @@
     "pretty:all": "pretty-quick",
     "pretty:staged": "pretty-quick --staged",
     "prettylint:all": "run-s pretty:all lint:all",
-    "start": "node -r dotenv/config build/DiscordBot.js",
+    "start:discord": "node -r dotenv/config build/DiscordBot.js",
     "studio": "prisma studio --browser none --url file:./dev.db"
   },
   "keywords": [],
