@@ -30,7 +30,7 @@ type CommandResponse =
  * @description This class represents a command that can be executed by the bot. It implements the ICommand interface and provides a constructor to initialize the command's name, description, and execute function. The respondsTo method can be used to determine if the command should respond to a given input.
  * This is a simple command class that can be used to create commands for the bot.
  */
-export class Command implements ICommand {
+class Command implements ICommand {
   public name: string;
   public description: string;
   public execute?: () => Promise<unknown | void>;
@@ -41,6 +41,14 @@ export class Command implements ICommand {
     this.description = description;
     this.execute = execute;
     this.response = response;
+  }
+
+  /**
+   * Returns a string representation of the command.
+   * @returns A string representing the command
+   */
+  public toString(): string {
+    return `> ${this.name} - ${this.description}`;
   }
 
   /**
@@ -82,6 +90,8 @@ export class Command implements ICommand {
       } else {
         responseMessage = this.response;
       }
+    } else if (typeof result === 'string') {
+      responseMessage = result;
     }
 
     if (responseMessage) {
@@ -89,3 +99,5 @@ export class Command implements ICommand {
     }
   }
 }
+
+export default Command;
