@@ -16,7 +16,7 @@
     "lint": "eslint . --quiet",
     "precommit": "run-s lint:staged git:update",
     "prepare": "husky",
-    "pretty:all": "pretty-quick",
+    "pretty:all": "pretty-quick src",
     "pretty:staged": "pretty-quick --staged",
     "prettylint:all": "run-s pretty:all lint:all",
     "start:discord": "node -r dotenv/config build/DiscordBot.js",

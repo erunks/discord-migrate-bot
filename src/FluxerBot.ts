@@ -1,8 +1,18 @@
 import { Client, Events, Message } from '@fluxerjs/core';
 import type { APIApplicationCommandInteraction } from '@fluxerjs/types';
+import { Command } from './commands/fluxer/command';
 
 export class FluxerBot {
   private static _client: Client;
+
+  // Example command list, you can replace this with your actual commands
+  private static commands: Command[] = [
+    new Command({
+      name: '!ping',
+      description: 'Replies with Pong!',
+      response: 'Pong!',
+    }),
+  ];
 
   static get Client(): Client {
     return this._client;
@@ -32,8 +42,9 @@ export class FluxerBot {
     );
 
     this._client.on(Events.MessageCreate, async (message: Message) => {
-      if (message.content === '!ping') {
-        await message.reply('Pong!');
+      for (const command of this.commands) {
+        await command.respond(message);
+        break; // Stop checking other commands after the first match
       }
     });
 
