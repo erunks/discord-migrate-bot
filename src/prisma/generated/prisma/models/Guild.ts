@@ -203,6 +203,7 @@ export type GuildWhereInput = {
   emojis?: Prisma.EmojiListRelationFilter
   channels?: Prisma.ChannelListRelationFilter
   roles?: Prisma.RoleListRelationFilter
+  stickers?: Prisma.StickerListRelationFilter
 }
 
 export type GuildOrderByWithRelationInput = {
@@ -212,6 +213,7 @@ export type GuildOrderByWithRelationInput = {
   emojis?: Prisma.EmojiOrderByRelationAggregateInput
   channels?: Prisma.ChannelOrderByRelationAggregateInput
   roles?: Prisma.RoleOrderByRelationAggregateInput
+  stickers?: Prisma.StickerOrderByRelationAggregateInput
 }
 
 export type GuildWhereUniqueInput = Prisma.AtLeast<{
@@ -224,6 +226,7 @@ export type GuildWhereUniqueInput = Prisma.AtLeast<{
   emojis?: Prisma.EmojiListRelationFilter
   channels?: Prisma.ChannelListRelationFilter
   roles?: Prisma.RoleListRelationFilter
+  stickers?: Prisma.StickerListRelationFilter
 }, "id" | "externalId">
 
 export type GuildOrderByWithAggregationInput = {
@@ -252,6 +255,7 @@ export type GuildCreateInput = {
   emojis?: Prisma.EmojiCreateNestedManyWithoutGuildInput
   channels?: Prisma.ChannelCreateNestedManyWithoutGuildInput
   roles?: Prisma.RoleCreateNestedManyWithoutGuildInput
+  stickers?: Prisma.StickerCreateNestedManyWithoutGuildInput
 }
 
 export type GuildUncheckedCreateInput = {
@@ -261,6 +265,7 @@ export type GuildUncheckedCreateInput = {
   emojis?: Prisma.EmojiUncheckedCreateNestedManyWithoutGuildInput
   channels?: Prisma.ChannelUncheckedCreateNestedManyWithoutGuildInput
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutGuildInput
+  stickers?: Prisma.StickerUncheckedCreateNestedManyWithoutGuildInput
 }
 
 export type GuildUpdateInput = {
@@ -269,6 +274,7 @@ export type GuildUpdateInput = {
   emojis?: Prisma.EmojiUpdateManyWithoutGuildNestedInput
   channels?: Prisma.ChannelUpdateManyWithoutGuildNestedInput
   roles?: Prisma.RoleUpdateManyWithoutGuildNestedInput
+  stickers?: Prisma.StickerUpdateManyWithoutGuildNestedInput
 }
 
 export type GuildUncheckedUpdateInput = {
@@ -278,6 +284,7 @@ export type GuildUncheckedUpdateInput = {
   emojis?: Prisma.EmojiUncheckedUpdateManyWithoutGuildNestedInput
   channels?: Prisma.ChannelUncheckedUpdateManyWithoutGuildNestedInput
   roles?: Prisma.RoleUncheckedUpdateManyWithoutGuildNestedInput
+  stickers?: Prisma.StickerUncheckedUpdateManyWithoutGuildNestedInput
 }
 
 export type GuildCreateManyInput = {
@@ -382,11 +389,26 @@ export type GuildUpdateOneRequiredWithoutChannelsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.GuildUpdateToOneWithWhereWithoutChannelsInput, Prisma.GuildUpdateWithoutChannelsInput>, Prisma.GuildUncheckedUpdateWithoutChannelsInput>
 }
 
+export type GuildCreateNestedOneWithoutStickersInput = {
+  create?: Prisma.XOR<Prisma.GuildCreateWithoutStickersInput, Prisma.GuildUncheckedCreateWithoutStickersInput>
+  connectOrCreate?: Prisma.GuildCreateOrConnectWithoutStickersInput
+  connect?: Prisma.GuildWhereUniqueInput
+}
+
+export type GuildUpdateOneRequiredWithoutStickersNestedInput = {
+  create?: Prisma.XOR<Prisma.GuildCreateWithoutStickersInput, Prisma.GuildUncheckedCreateWithoutStickersInput>
+  connectOrCreate?: Prisma.GuildCreateOrConnectWithoutStickersInput
+  upsert?: Prisma.GuildUpsertWithoutStickersInput
+  connect?: Prisma.GuildWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.GuildUpdateToOneWithWhereWithoutStickersInput, Prisma.GuildUpdateWithoutStickersInput>, Prisma.GuildUncheckedUpdateWithoutStickersInput>
+}
+
 export type GuildCreateWithoutEmojisInput = {
   name: string
   externalId: string
   channels?: Prisma.ChannelCreateNestedManyWithoutGuildInput
   roles?: Prisma.RoleCreateNestedManyWithoutGuildInput
+  stickers?: Prisma.StickerCreateNestedManyWithoutGuildInput
 }
 
 export type GuildUncheckedCreateWithoutEmojisInput = {
@@ -395,6 +417,7 @@ export type GuildUncheckedCreateWithoutEmojisInput = {
   externalId: string
   channels?: Prisma.ChannelUncheckedCreateNestedManyWithoutGuildInput
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutGuildInput
+  stickers?: Prisma.StickerUncheckedCreateNestedManyWithoutGuildInput
 }
 
 export type GuildCreateOrConnectWithoutEmojisInput = {
@@ -418,6 +441,7 @@ export type GuildUpdateWithoutEmojisInput = {
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
   channels?: Prisma.ChannelUpdateManyWithoutGuildNestedInput
   roles?: Prisma.RoleUpdateManyWithoutGuildNestedInput
+  stickers?: Prisma.StickerUpdateManyWithoutGuildNestedInput
 }
 
 export type GuildUncheckedUpdateWithoutEmojisInput = {
@@ -426,6 +450,7 @@ export type GuildUncheckedUpdateWithoutEmojisInput = {
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
   channels?: Prisma.ChannelUncheckedUpdateManyWithoutGuildNestedInput
   roles?: Prisma.RoleUncheckedUpdateManyWithoutGuildNestedInput
+  stickers?: Prisma.StickerUncheckedUpdateManyWithoutGuildNestedInput
 }
 
 export type GuildCreateWithoutRolesInput = {
@@ -433,6 +458,7 @@ export type GuildCreateWithoutRolesInput = {
   externalId: string
   emojis?: Prisma.EmojiCreateNestedManyWithoutGuildInput
   channels?: Prisma.ChannelCreateNestedManyWithoutGuildInput
+  stickers?: Prisma.StickerCreateNestedManyWithoutGuildInput
 }
 
 export type GuildUncheckedCreateWithoutRolesInput = {
@@ -441,6 +467,7 @@ export type GuildUncheckedCreateWithoutRolesInput = {
   externalId: string
   emojis?: Prisma.EmojiUncheckedCreateNestedManyWithoutGuildInput
   channels?: Prisma.ChannelUncheckedCreateNestedManyWithoutGuildInput
+  stickers?: Prisma.StickerUncheckedCreateNestedManyWithoutGuildInput
 }
 
 export type GuildCreateOrConnectWithoutRolesInput = {
@@ -464,6 +491,7 @@ export type GuildUpdateWithoutRolesInput = {
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
   emojis?: Prisma.EmojiUpdateManyWithoutGuildNestedInput
   channels?: Prisma.ChannelUpdateManyWithoutGuildNestedInput
+  stickers?: Prisma.StickerUpdateManyWithoutGuildNestedInput
 }
 
 export type GuildUncheckedUpdateWithoutRolesInput = {
@@ -472,6 +500,7 @@ export type GuildUncheckedUpdateWithoutRolesInput = {
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
   emojis?: Prisma.EmojiUncheckedUpdateManyWithoutGuildNestedInput
   channels?: Prisma.ChannelUncheckedUpdateManyWithoutGuildNestedInput
+  stickers?: Prisma.StickerUncheckedUpdateManyWithoutGuildNestedInput
 }
 
 export type GuildCreateWithoutChannelsInput = {
@@ -479,6 +508,7 @@ export type GuildCreateWithoutChannelsInput = {
   externalId: string
   emojis?: Prisma.EmojiCreateNestedManyWithoutGuildInput
   roles?: Prisma.RoleCreateNestedManyWithoutGuildInput
+  stickers?: Prisma.StickerCreateNestedManyWithoutGuildInput
 }
 
 export type GuildUncheckedCreateWithoutChannelsInput = {
@@ -487,6 +517,7 @@ export type GuildUncheckedCreateWithoutChannelsInput = {
   externalId: string
   emojis?: Prisma.EmojiUncheckedCreateNestedManyWithoutGuildInput
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutGuildInput
+  stickers?: Prisma.StickerUncheckedCreateNestedManyWithoutGuildInput
 }
 
 export type GuildCreateOrConnectWithoutChannelsInput = {
@@ -510,6 +541,7 @@ export type GuildUpdateWithoutChannelsInput = {
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
   emojis?: Prisma.EmojiUpdateManyWithoutGuildNestedInput
   roles?: Prisma.RoleUpdateManyWithoutGuildNestedInput
+  stickers?: Prisma.StickerUpdateManyWithoutGuildNestedInput
 }
 
 export type GuildUncheckedUpdateWithoutChannelsInput = {
@@ -517,6 +549,57 @@ export type GuildUncheckedUpdateWithoutChannelsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
   emojis?: Prisma.EmojiUncheckedUpdateManyWithoutGuildNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutGuildNestedInput
+  stickers?: Prisma.StickerUncheckedUpdateManyWithoutGuildNestedInput
+}
+
+export type GuildCreateWithoutStickersInput = {
+  name: string
+  externalId: string
+  emojis?: Prisma.EmojiCreateNestedManyWithoutGuildInput
+  channels?: Prisma.ChannelCreateNestedManyWithoutGuildInput
+  roles?: Prisma.RoleCreateNestedManyWithoutGuildInput
+}
+
+export type GuildUncheckedCreateWithoutStickersInput = {
+  id?: number
+  name: string
+  externalId: string
+  emojis?: Prisma.EmojiUncheckedCreateNestedManyWithoutGuildInput
+  channels?: Prisma.ChannelUncheckedCreateNestedManyWithoutGuildInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutGuildInput
+}
+
+export type GuildCreateOrConnectWithoutStickersInput = {
+  where: Prisma.GuildWhereUniqueInput
+  create: Prisma.XOR<Prisma.GuildCreateWithoutStickersInput, Prisma.GuildUncheckedCreateWithoutStickersInput>
+}
+
+export type GuildUpsertWithoutStickersInput = {
+  update: Prisma.XOR<Prisma.GuildUpdateWithoutStickersInput, Prisma.GuildUncheckedUpdateWithoutStickersInput>
+  create: Prisma.XOR<Prisma.GuildCreateWithoutStickersInput, Prisma.GuildUncheckedCreateWithoutStickersInput>
+  where?: Prisma.GuildWhereInput
+}
+
+export type GuildUpdateToOneWithWhereWithoutStickersInput = {
+  where?: Prisma.GuildWhereInput
+  data: Prisma.XOR<Prisma.GuildUpdateWithoutStickersInput, Prisma.GuildUncheckedUpdateWithoutStickersInput>
+}
+
+export type GuildUpdateWithoutStickersInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  externalId?: Prisma.StringFieldUpdateOperationsInput | string
+  emojis?: Prisma.EmojiUpdateManyWithoutGuildNestedInput
+  channels?: Prisma.ChannelUpdateManyWithoutGuildNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutGuildNestedInput
+}
+
+export type GuildUncheckedUpdateWithoutStickersInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  externalId?: Prisma.StringFieldUpdateOperationsInput | string
+  emojis?: Prisma.EmojiUncheckedUpdateManyWithoutGuildNestedInput
+  channels?: Prisma.ChannelUncheckedUpdateManyWithoutGuildNestedInput
   roles?: Prisma.RoleUncheckedUpdateManyWithoutGuildNestedInput
 }
 
@@ -529,12 +612,14 @@ export type GuildCountOutputType = {
   emojis: number
   channels: number
   roles: number
+  stickers: number
 }
 
 export type GuildCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   emojis?: boolean | GuildCountOutputTypeCountEmojisArgs
   channels?: boolean | GuildCountOutputTypeCountChannelsArgs
   roles?: boolean | GuildCountOutputTypeCountRolesArgs
+  stickers?: boolean | GuildCountOutputTypeCountStickersArgs
 }
 
 /**
@@ -568,6 +653,13 @@ export type GuildCountOutputTypeCountRolesArgs<ExtArgs extends runtime.Types.Ext
   where?: Prisma.RoleWhereInput
 }
 
+/**
+ * GuildCountOutputType without action
+ */
+export type GuildCountOutputTypeCountStickersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StickerWhereInput
+}
+
 
 export type GuildSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -576,6 +668,7 @@ export type GuildSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   emojis?: boolean | Prisma.Guild$emojisArgs<ExtArgs>
   channels?: boolean | Prisma.Guild$channelsArgs<ExtArgs>
   roles?: boolean | Prisma.Guild$rolesArgs<ExtArgs>
+  stickers?: boolean | Prisma.Guild$stickersArgs<ExtArgs>
   _count?: boolean | Prisma.GuildCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["guild"]>
 
@@ -602,6 +695,7 @@ export type GuildInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   emojis?: boolean | Prisma.Guild$emojisArgs<ExtArgs>
   channels?: boolean | Prisma.Guild$channelsArgs<ExtArgs>
   roles?: boolean | Prisma.Guild$rolesArgs<ExtArgs>
+  stickers?: boolean | Prisma.Guild$stickersArgs<ExtArgs>
   _count?: boolean | Prisma.GuildCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type GuildIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -613,6 +707,7 @@ export type $GuildPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     emojis: Prisma.$EmojiPayload<ExtArgs>[]
     channels: Prisma.$ChannelPayload<ExtArgs>[]
     roles: Prisma.$RolePayload<ExtArgs>[]
+    stickers: Prisma.$StickerPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1015,6 +1110,7 @@ export interface Prisma__GuildClient<T, Null = never, ExtArgs extends runtime.Ty
   emojis<T extends Prisma.Guild$emojisArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Guild$emojisArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmojiPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   channels<T extends Prisma.Guild$channelsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Guild$channelsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChannelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   roles<T extends Prisma.Guild$rolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Guild$rolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  stickers<T extends Prisma.Guild$stickersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Guild$stickersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StickerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1502,6 +1598,30 @@ export type Guild$rolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   distinct?: Prisma.RoleScalarFieldEnum | Prisma.RoleScalarFieldEnum[]
+}
+
+/**
+ * Guild.stickers
+ */
+export type Guild$stickersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Sticker
+   */
+  select?: Prisma.StickerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Sticker
+   */
+  omit?: Prisma.StickerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StickerInclude<ExtArgs> | null
+  where?: Prisma.StickerWhereInput
+  orderBy?: Prisma.StickerOrderByWithRelationInput | Prisma.StickerOrderByWithRelationInput[]
+  cursor?: Prisma.StickerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StickerScalarFieldEnum | Prisma.StickerScalarFieldEnum[]
 }
 
 /**

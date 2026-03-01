@@ -55,7 +55,8 @@ export const ModelName = {
   Emoji: 'Emoji',
   Role: 'Role',
   Channel: 'Channel',
-  ChannelRole: 'ChannelRole'
+  ChannelRole: 'ChannelRole',
+  Sticker: 'Sticker'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -130,6 +131,25 @@ export const ChannelRoleScalarFieldEnum = {
 } as const
 
 export type ChannelRoleScalarFieldEnum = (typeof ChannelRoleScalarFieldEnum)[keyof typeof ChannelRoleScalarFieldEnum]
+
+
+export const StickerScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  externalId: 'externalId',
+  available: 'available',
+  formatType: 'formatType',
+  base64Data: 'base64Data',
+  packId: 'packId',
+  partial: 'partial',
+  sortValue: 'sortValue',
+  tags: 'tags',
+  type: 'type',
+  guildId: 'guildId'
+} as const
+
+export type StickerScalarFieldEnum = (typeof StickerScalarFieldEnum)[keyof typeof StickerScalarFieldEnum]
 
 
 export const SortOrder = {

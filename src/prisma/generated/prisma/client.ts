@@ -64,3 +64,8 @@ export type Channel = Prisma.ChannelModel
  * 
  */
 export type ChannelRole = Prisma.ChannelRoleModel
+/**
+ * Model Sticker
+ * 
+ */
+export type Sticker = Prisma.StickerModel

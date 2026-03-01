@@ -18,6 +18,7 @@ model Guild {
   emojis Emoji[]
   channels Channel[]
   roles Role[]
+  stickers Sticker[]
 }
 
 model Emoji {
@@ -67,4 +68,21 @@ model ChannelRole {
   permissions Json
   channel Channel @relation(fields: [channelId], references: [id])
   role Role @relation(fields: [roleId], references: [id])
+}
+
+model Sticker {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  externalId String @unique
+  available Boolean
+  formatType Int
+  base64Data String
+  packId String?
+  partial Boolean
+  sortValue Int
+  tags String?
+  type Int
+  guildId Int
+  guild Guild @relation(fields: [guildId], references: [id])
 }

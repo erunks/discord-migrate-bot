@@ -388,7 +388,8 @@ export const ModelName = {
   Emoji: 'Emoji',
   Role: 'Role',
   Channel: 'Channel',
-  ChannelRole: 'ChannelRole'
+  ChannelRole: 'ChannelRole',
+  Sticker: 'Sticker'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -404,7 +405,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "guild" | "emoji" | "role" | "channel" | "channelRole"
+    modelProps: "guild" | "emoji" | "role" | "channel" | "channelRole" | "sticker"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -778,6 +779,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Sticker: {
+      payload: Prisma.$StickerPayload<ExtArgs>
+      fields: Prisma.StickerFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.StickerFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.StickerFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>
+        }
+        findFirst: {
+          args: Prisma.StickerFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.StickerFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>
+        }
+        findMany: {
+          args: Prisma.StickerFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>[]
+        }
+        create: {
+          args: Prisma.StickerCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>
+        }
+        createMany: {
+          args: Prisma.StickerCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.StickerCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>[]
+        }
+        delete: {
+          args: Prisma.StickerDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>
+        }
+        update: {
+          args: Prisma.StickerUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>
+        }
+        deleteMany: {
+          args: Prisma.StickerDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.StickerUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.StickerUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>[]
+        }
+        upsert: {
+          args: Prisma.StickerUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>
+        }
+        aggregate: {
+          args: Prisma.StickerAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSticker>
+        }
+        groupBy: {
+          args: Prisma.StickerGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StickerGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.StickerCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StickerCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -873,6 +948,25 @@ export const ChannelRoleScalarFieldEnum = {
 } as const
 
 export type ChannelRoleScalarFieldEnum = (typeof ChannelRoleScalarFieldEnum)[keyof typeof ChannelRoleScalarFieldEnum]
+
+
+export const StickerScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  externalId: 'externalId',
+  available: 'available',
+  formatType: 'formatType',
+  base64Data: 'base64Data',
+  packId: 'packId',
+  partial: 'partial',
+  sortValue: 'sortValue',
+  tags: 'tags',
+  type: 'type',
+  guildId: 'guildId'
+} as const
+
+export type StickerScalarFieldEnum = (typeof StickerScalarFieldEnum)[keyof typeof StickerScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1062,6 +1156,7 @@ export type GlobalOmitConfig = {
   role?: Prisma.RoleOmit
   channel?: Prisma.ChannelOmit
   channelRole?: Prisma.ChannelRoleOmit
+  sticker?: Prisma.StickerOmit
 }
 
 /* Types for Logging */
