@@ -1,9 +1,23 @@
-import type { CommandInteraction, Role } from 'discord.js';
+import type {
+  CommandInteraction,
+  NonThreadGuildBasedChannel,
+  Role,
+} from 'discord.js';
 import { Discord, Slash } from 'discordx';
 import { prisma } from '../../lib/prisma';
 import type { ChannelUncheckedCreateInput } from '../../prisma/generated/prisma/models/Channel';
 import type { ChannelRoleFindUniqueArgs } from '../../prisma/generated/prisma/models/ChannelRole';
-import type { RoleUncheckedCreateInput } from '../../prisma/generated/prisma/models/Role';
+import type {
+  Channel,
+  Role as PrismaRole,
+} from '../../prisma/generated/prisma/client';
+
+type findOrCreateChannelRoleOptions = {
+  channel: NonThreadGuildBasedChannel;
+  channelRecord: Channel;
+  role: Role;
+  roleRecord: PrismaRole;
+};
 
 @Discord()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -18,101 +32,146 @@ class Scraper {
 
       await interaction.reply('Scraping data...');
 
-      let guildRecord = await prisma.guild.findUnique({
-        where: { externalId: interaction.guildId },
-      });
-
-      if (!guildRecord) {
-        guildRecord = await prisma.guild.create({
-          data: {
-            externalId: interaction.guildId,
-            name: interaction.guild?.name || 'Unknown Guild',
-          },
-        });
-      }
+      const guildRecord = await this.findOrCreateGuild(interaction);
 
       const serverRoles: Array<Role> = [];
       await interaction.guild?.roles.fetch().then((roles) => {
-        roles.map(async (role) => {
+        roles.forEach(async (role) => {
           serverRoles.push(role);
 
-          const roleRecord = await prisma.role.findUnique({
-            where: { externalId: role.id },
-          });
-
-          if (!roleRecord) {
-            await prisma.role.create({
-              data: {
-                externalId: role.id,
-                name: role.name,
-                guildId: guildRecord!.id,
-                colors: role.colors,
-                flags: role.flags.toJSON(),
-                hoist: role.hoist,
-                mentionable: role.mentionable,
-                position: role.position,
-                permissions: role.permissions.serialize(true),
-              } as RoleUncheckedCreateInput,
-            });
-          }
+          await this.findOrCreateRole(role, guildRecord.id);
         });
       });
 
       await interaction.guild?.channels.fetch().then((channels) => {
-        channels.map(async (channel) => {
+        channels.forEach(async (channel) => {
           if (!channel) {
             return;
           }
 
-          let channelRecord = await prisma.channel.findUnique({
-            where: { externalId: channel.id },
-          });
-
-          if (!channelRecord) {
-            channelRecord = await prisma.channel.create({
-              data: {
-                externalId: channel.id,
-                externalParentId: channel.parentId,
-                name: channel.name || 'Unknown Channel',
-                type: channel.type.toString(),
-                guildId: guildRecord!.id,
-                flags: channel.flags.toJSON(),
-                position: channel.position,
-              } as ChannelUncheckedCreateInput,
-            });
-          }
+          const channelRecord = await this.findOrCreateChannel(
+            channel,
+            guildRecord.id,
+          );
 
           serverRoles.forEach(async (role) => {
             const roleRecord = await prisma.role.findUniqueOrThrow({
               where: { externalId: role.id },
             });
 
-            const channelRoleRecord = await prisma.channelRole.findUnique({
-              where: {
-                channelId: channelRecord.id,
-                roleId: roleRecord.id,
-              }
-            } as ChannelRoleFindUniqueArgs);
-            
-            if (!channelRoleRecord) {
-              await prisma.channelRole.create({
-                data: {
-                  channelId: channelRecord!.id,
-                  roleId: roleRecord.id,
-                  permissions: channel.permissionsFor(role)?.serialize(true) || [],
-                },
-              });
-            }
+            await this.findOrCreateChannelRole({
+              channel,
+              channelRecord,
+              role,
+              roleRecord,
+            });
           });
         });
       });
 
       await interaction.followUp('Data scraped successfully!');
-
     } catch (error) {
       console.error('Error during scraping:', error); // eslint-disable-line no-console
     } finally {
       await prisma.$disconnect();
     }
+  }
+
+  private async findOrCreateGuild(interaction: CommandInteraction) {
+    if (!interaction.guildId) {
+      throw new Error(
+        'No guild ID found in the interaction. This command can only be used within a guild.',
+      );
+    }
+
+    let record = await prisma.guild.findUnique({
+      where: { externalId: interaction.guildId },
+    });
+
+    if (!record) {
+      record = await prisma.guild.create({
+        data: {
+          externalId: interaction.guildId,
+          name: interaction.guild?.name || 'Unknown Guild',
+        },
+      });
+    }
+
+    return record;
+  }
+
+  private async findOrCreateRole(role: Role, guildId: number) {
+    let record = await prisma.role.findUnique({
+      where: { externalId: role.id },
+    });
+
+    if (!record) {
+      record = await prisma.role.create({
+        data: {
+          externalId: role.id,
+          name: role.name,
+          guildId,
+          colors: { ...role.colors },
+          flags: role.flags.toJSON(),
+          hoist: role.hoist,
+          mentionable: role.mentionable,
+          position: role.position,
+          permissions: role.permissions.serialize(true),
+        },
+      });
+    }
+
+    return record;
+  }
+
+  private async findOrCreateChannel(
+    channel: NonThreadGuildBasedChannel,
+    guildId: number,
+  ) {
+    let record = await prisma.channel.findUnique({
+      where: { externalId: channel.id },
+    });
+
+    if (!record) {
+      record = await prisma.channel.create({
+        data: {
+          externalId: channel.id,
+          externalParentId: channel.parentId,
+          name: channel.name || 'Unknown Channel',
+          type: channel.type.toString(),
+          guildId,
+          flags: channel.flags.toJSON(),
+          position: channel.position,
+        } as ChannelUncheckedCreateInput,
+      });
+    }
+
+    return record;
+  }
+
+  private async findOrCreateChannelRole({
+    channel,
+    channelRecord,
+    role,
+    roleRecord,
+  }: findOrCreateChannelRoleOptions) {
+    let record = await prisma.channelRole.findUnique({
+      where: {
+        channelId: channelRecord!.id,
+        roleId: roleRecord!.id,
+      },
+    } as ChannelRoleFindUniqueArgs);
+
+    if (!record) {
+      record = await prisma.channelRole.create({
+        data: {
+          channelId: channelRecord!.id,
+          roleId: roleRecord!.id,
+          permissions: channel.permissionsFor(role)?.serialize(true) || [],
+        },
+      });
+    }
+
+    return record;
   }
 }
