@@ -199,7 +199,9 @@ class Scraper {
     });
 
     if (!record) {
-      const base64Data = await this.getBase64FromUrl(emoji!.url);
+      const url = emoji!.imageURL({ extension: emoji!.animated ? 'gif' : 'png' })
+      const base64Data = await this.getBase64FromUrl(url);
+
       record = await prisma.emoji.create({
         data: {
           externalId: emoji!.id,
@@ -207,6 +209,7 @@ class Scraper {
           animated: emoji!.animated,
           guildId,
           base64Data,
+          url,
         } as EmojiUncheckedCreateInput,
       });
     }
