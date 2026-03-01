@@ -13,7 +13,7 @@ import type {
   Channel,
   Role as PrismaRole,
 } from '../../prisma/generated/prisma/client';
-import {
+import type {
   EmojiUncheckedCreateInput,
   EmojiWhereUniqueInput,
   StickerCreateInput,
