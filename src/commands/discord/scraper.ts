@@ -1,5 +1,6 @@
 import type {
   CommandInteraction,
+  Emoji,
   NonThreadGuildBasedChannel,
   Role,
 } from 'discord.js';
@@ -11,6 +12,7 @@ import type {
   Channel,
   Role as PrismaRole,
 } from '../../prisma/generated/prisma/client';
+import { EmojiUncheckedCreateInput, EmojiWhereUniqueInput } from '../../prisma/generated/prisma/models';
 
 type findOrCreateChannelRoleOptions = {
   channel: NonThreadGuildBasedChannel;
@@ -66,6 +68,12 @@ class Scraper {
               roleRecord,
             });
           });
+        });
+      });
+
+      await interaction.guild?.emojis.fetch().then((emojis) => {
+        emojis.forEach(async (emoji) => {
+          await this.findOrCreateEmoji(emoji, guildRecord.id);
         });
       });
 
@@ -169,6 +177,37 @@ class Scraper {
           roleId: roleRecord!.id,
           permissions: channel.permissionsFor(role)?.serialize(true) || [],
         },
+      });
+    }
+
+    return record;
+  }
+
+  private async getBase64FromUrl(url: string|null): Promise<string> {
+    if (!url) {
+      return '';
+    }
+
+    const response = await fetch(url);
+    const buffer = await response.arrayBuffer();
+    return Buffer.from(buffer).toString('base64');
+  }
+
+  private async findOrCreateEmoji(emoji: Emoji, guildId: number) {
+    let record = await prisma.emoji.findUnique({
+      where: { externalId: emoji!.id } as EmojiWhereUniqueInput,
+    });
+
+    if (!record) {
+      const base64Data = await this.getBase64FromUrl(emoji!.url);
+      record = await prisma.emoji.create({
+        data: {
+          externalId: emoji!.id,
+          name: emoji!.name,
+          animated: emoji!.animated,
+          guildId,
+          base64Data,
+        } as EmojiUncheckedCreateInput,
       });
     }
 
