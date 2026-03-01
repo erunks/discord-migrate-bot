@@ -55,6 +55,7 @@ export type StickerMinAggregateOutputType = {
   sortValue: number | null
   tags: string | null
   type: number | null
+  url: string | null
   guildId: number | null
 }
 
@@ -71,6 +72,7 @@ export type StickerMaxAggregateOutputType = {
   sortValue: number | null
   tags: string | null
   type: number | null
+  url: string | null
   guildId: number | null
 }
 
@@ -87,6 +89,7 @@ export type StickerCountAggregateOutputType = {
   sortValue: number
   tags: number
   type: number
+  url: number
   guildId: number
   _all: number
 }
@@ -121,6 +124,7 @@ export type StickerMinAggregateInputType = {
   sortValue?: true
   tags?: true
   type?: true
+  url?: true
   guildId?: true
 }
 
@@ -137,6 +141,7 @@ export type StickerMaxAggregateInputType = {
   sortValue?: true
   tags?: true
   type?: true
+  url?: true
   guildId?: true
 }
 
@@ -153,6 +158,7 @@ export type StickerCountAggregateInputType = {
   sortValue?: true
   tags?: true
   type?: true
+  url?: true
   guildId?: true
   _all?: true
 }
@@ -256,6 +262,7 @@ export type StickerGroupByOutputType = {
   sortValue: number
   tags: string | null
   type: number
+  url: string
   guildId: number
   _count: StickerCountAggregateOutputType | null
   _avg: StickerAvgAggregateOutputType | null
@@ -295,6 +302,7 @@ export type StickerWhereInput = {
   sortValue?: Prisma.IntFilter<"Sticker"> | number
   tags?: Prisma.StringNullableFilter<"Sticker"> | string | null
   type?: Prisma.IntFilter<"Sticker"> | number
+  url?: Prisma.StringFilter<"Sticker"> | string
   guildId?: Prisma.IntFilter<"Sticker"> | number
   guild?: Prisma.XOR<Prisma.GuildScalarRelationFilter, Prisma.GuildWhereInput>
 }
@@ -312,6 +320,7 @@ export type StickerOrderByWithRelationInput = {
   sortValue?: Prisma.SortOrder
   tags?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
+  url?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
   guild?: Prisma.GuildOrderByWithRelationInput
 }
@@ -332,6 +341,7 @@ export type StickerWhereUniqueInput = Prisma.AtLeast<{
   sortValue?: Prisma.IntFilter<"Sticker"> | number
   tags?: Prisma.StringNullableFilter<"Sticker"> | string | null
   type?: Prisma.IntFilter<"Sticker"> | number
+  url?: Prisma.StringFilter<"Sticker"> | string
   guildId?: Prisma.IntFilter<"Sticker"> | number
   guild?: Prisma.XOR<Prisma.GuildScalarRelationFilter, Prisma.GuildWhereInput>
 }, "id" | "externalId">
@@ -349,6 +359,7 @@ export type StickerOrderByWithAggregationInput = {
   sortValue?: Prisma.SortOrder
   tags?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
+  url?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
   _count?: Prisma.StickerCountOrderByAggregateInput
   _avg?: Prisma.StickerAvgOrderByAggregateInput
@@ -373,6 +384,7 @@ export type StickerScalarWhereWithAggregatesInput = {
   sortValue?: Prisma.IntWithAggregatesFilter<"Sticker"> | number
   tags?: Prisma.StringNullableWithAggregatesFilter<"Sticker"> | string | null
   type?: Prisma.IntWithAggregatesFilter<"Sticker"> | number
+  url?: Prisma.StringWithAggregatesFilter<"Sticker"> | string
   guildId?: Prisma.IntWithAggregatesFilter<"Sticker"> | number
 }
 
@@ -388,6 +400,7 @@ export type StickerCreateInput = {
   sortValue: number
   tags?: string | null
   type: number
+  url: string
   guild: Prisma.GuildCreateNestedOneWithoutStickersInput
 }
 
@@ -404,6 +417,7 @@ export type StickerUncheckedCreateInput = {
   sortValue: number
   tags?: string | null
   type: number
+  url: string
   guildId: number
 }
 
@@ -419,6 +433,7 @@ export type StickerUpdateInput = {
   sortValue?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.IntFieldUpdateOperationsInput | number
+  url?: Prisma.StringFieldUpdateOperationsInput | string
   guild?: Prisma.GuildUpdateOneRequiredWithoutStickersNestedInput
 }
 
@@ -435,6 +450,7 @@ export type StickerUncheckedUpdateInput = {
   sortValue?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.IntFieldUpdateOperationsInput | number
+  url?: Prisma.StringFieldUpdateOperationsInput | string
   guildId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -451,6 +467,7 @@ export type StickerCreateManyInput = {
   sortValue: number
   tags?: string | null
   type: number
+  url: string
   guildId: number
 }
 
@@ -466,6 +483,7 @@ export type StickerUpdateManyMutationInput = {
   sortValue?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.IntFieldUpdateOperationsInput | number
+  url?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StickerUncheckedUpdateManyInput = {
@@ -481,6 +499,7 @@ export type StickerUncheckedUpdateManyInput = {
   sortValue?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.IntFieldUpdateOperationsInput | number
+  url?: Prisma.StringFieldUpdateOperationsInput | string
   guildId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -507,6 +526,7 @@ export type StickerCountOrderByAggregateInput = {
   sortValue?: Prisma.SortOrder
   tags?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  url?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
 }
 
@@ -531,6 +551,7 @@ export type StickerMaxOrderByAggregateInput = {
   sortValue?: Prisma.SortOrder
   tags?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  url?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
 }
 
@@ -547,6 +568,7 @@ export type StickerMinOrderByAggregateInput = {
   sortValue?: Prisma.SortOrder
   tags?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  url?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
 }
 
@@ -612,6 +634,7 @@ export type StickerCreateWithoutGuildInput = {
   sortValue: number
   tags?: string | null
   type: number
+  url: string
 }
 
 export type StickerUncheckedCreateWithoutGuildInput = {
@@ -627,6 +650,7 @@ export type StickerUncheckedCreateWithoutGuildInput = {
   sortValue: number
   tags?: string | null
   type: number
+  url: string
 }
 
 export type StickerCreateOrConnectWithoutGuildInput = {
@@ -670,6 +694,7 @@ export type StickerScalarWhereInput = {
   sortValue?: Prisma.IntFilter<"Sticker"> | number
   tags?: Prisma.StringNullableFilter<"Sticker"> | string | null
   type?: Prisma.IntFilter<"Sticker"> | number
+  url?: Prisma.StringFilter<"Sticker"> | string
   guildId?: Prisma.IntFilter<"Sticker"> | number
 }
 
@@ -686,6 +711,7 @@ export type StickerCreateManyGuildInput = {
   sortValue: number
   tags?: string | null
   type: number
+  url: string
 }
 
 export type StickerUpdateWithoutGuildInput = {
@@ -700,6 +726,7 @@ export type StickerUpdateWithoutGuildInput = {
   sortValue?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.IntFieldUpdateOperationsInput | number
+  url?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StickerUncheckedUpdateWithoutGuildInput = {
@@ -715,6 +742,7 @@ export type StickerUncheckedUpdateWithoutGuildInput = {
   sortValue?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.IntFieldUpdateOperationsInput | number
+  url?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StickerUncheckedUpdateManyWithoutGuildInput = {
@@ -730,6 +758,7 @@ export type StickerUncheckedUpdateManyWithoutGuildInput = {
   sortValue?: Prisma.IntFieldUpdateOperationsInput | number
   tags?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.IntFieldUpdateOperationsInput | number
+  url?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -747,6 +776,7 @@ export type StickerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   sortValue?: boolean
   tags?: boolean
   type?: boolean
+  url?: boolean
   guildId?: boolean
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sticker"]>
@@ -764,6 +794,7 @@ export type StickerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   sortValue?: boolean
   tags?: boolean
   type?: boolean
+  url?: boolean
   guildId?: boolean
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sticker"]>
@@ -781,6 +812,7 @@ export type StickerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   sortValue?: boolean
   tags?: boolean
   type?: boolean
+  url?: boolean
   guildId?: boolean
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sticker"]>
@@ -798,10 +830,11 @@ export type StickerSelectScalar = {
   sortValue?: boolean
   tags?: boolean
   type?: boolean
+  url?: boolean
   guildId?: boolean
 }
 
-export type StickerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "externalId" | "available" | "formatType" | "base64Data" | "packId" | "partial" | "sortValue" | "tags" | "type" | "guildId", ExtArgs["result"]["sticker"]>
+export type StickerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "externalId" | "available" | "formatType" | "base64Data" | "packId" | "partial" | "sortValue" | "tags" | "type" | "url" | "guildId", ExtArgs["result"]["sticker"]>
 export type StickerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
 }
@@ -830,6 +863,7 @@ export type $StickerPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     sortValue: number
     tags: string | null
     type: number
+    url: string
     guildId: number
   }, ExtArgs["result"]["sticker"]>
   composites: {}
@@ -1267,6 +1301,7 @@ export interface StickerFieldRefs {
   readonly sortValue: Prisma.FieldRef<"Sticker", 'Int'>
   readonly tags: Prisma.FieldRef<"Sticker", 'String'>
   readonly type: Prisma.FieldRef<"Sticker", 'Int'>
+  readonly url: Prisma.FieldRef<"Sticker", 'String'>
   readonly guildId: Prisma.FieldRef<"Sticker", 'Int'>
 }
     

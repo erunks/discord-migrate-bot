@@ -28,6 +28,7 @@ model Emoji {
   animated Boolean
   guildId Int
   base64Data String
+  url String
   guild Guild @relation(fields: [guildId], references: [id])
 }
 
@@ -83,6 +84,7 @@ model Sticker {
   sortValue Int
   tags String?
   type Int
+  url String
   guildId Int
   guild Guild @relation(fields: [guildId], references: [id])
 }

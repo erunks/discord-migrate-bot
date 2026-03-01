@@ -43,6 +43,7 @@ export type EmojiMinAggregateOutputType = {
   animated: boolean | null
   guildId: number | null
   base64Data: string | null
+  url: string | null
 }
 
 export type EmojiMaxAggregateOutputType = {
@@ -52,6 +53,7 @@ export type EmojiMaxAggregateOutputType = {
   animated: boolean | null
   guildId: number | null
   base64Data: string | null
+  url: string | null
 }
 
 export type EmojiCountAggregateOutputType = {
@@ -61,6 +63,7 @@ export type EmojiCountAggregateOutputType = {
   animated: number
   guildId: number
   base64Data: number
+  url: number
   _all: number
 }
 
@@ -82,6 +85,7 @@ export type EmojiMinAggregateInputType = {
   animated?: true
   guildId?: true
   base64Data?: true
+  url?: true
 }
 
 export type EmojiMaxAggregateInputType = {
@@ -91,6 +95,7 @@ export type EmojiMaxAggregateInputType = {
   animated?: true
   guildId?: true
   base64Data?: true
+  url?: true
 }
 
 export type EmojiCountAggregateInputType = {
@@ -100,6 +105,7 @@ export type EmojiCountAggregateInputType = {
   animated?: true
   guildId?: true
   base64Data?: true
+  url?: true
   _all?: true
 }
 
@@ -196,6 +202,7 @@ export type EmojiGroupByOutputType = {
   animated: boolean
   guildId: number
   base64Data: string
+  url: string
   _count: EmojiCountAggregateOutputType | null
   _avg: EmojiAvgAggregateOutputType | null
   _sum: EmojiSumAggregateOutputType | null
@@ -228,6 +235,7 @@ export type EmojiWhereInput = {
   animated?: Prisma.BoolFilter<"Emoji"> | boolean
   guildId?: Prisma.IntFilter<"Emoji"> | number
   base64Data?: Prisma.StringFilter<"Emoji"> | string
+  url?: Prisma.StringFilter<"Emoji"> | string
   guild?: Prisma.XOR<Prisma.GuildScalarRelationFilter, Prisma.GuildWhereInput>
 }
 
@@ -238,6 +246,7 @@ export type EmojiOrderByWithRelationInput = {
   animated?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
   base64Data?: Prisma.SortOrder
+  url?: Prisma.SortOrder
   guild?: Prisma.GuildOrderByWithRelationInput
 }
 
@@ -251,6 +260,7 @@ export type EmojiWhereUniqueInput = Prisma.AtLeast<{
   animated?: Prisma.BoolFilter<"Emoji"> | boolean
   guildId?: Prisma.IntFilter<"Emoji"> | number
   base64Data?: Prisma.StringFilter<"Emoji"> | string
+  url?: Prisma.StringFilter<"Emoji"> | string
   guild?: Prisma.XOR<Prisma.GuildScalarRelationFilter, Prisma.GuildWhereInput>
 }, "id" | "externalId">
 
@@ -261,6 +271,7 @@ export type EmojiOrderByWithAggregationInput = {
   animated?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
   base64Data?: Prisma.SortOrder
+  url?: Prisma.SortOrder
   _count?: Prisma.EmojiCountOrderByAggregateInput
   _avg?: Prisma.EmojiAvgOrderByAggregateInput
   _max?: Prisma.EmojiMaxOrderByAggregateInput
@@ -278,6 +289,7 @@ export type EmojiScalarWhereWithAggregatesInput = {
   animated?: Prisma.BoolWithAggregatesFilter<"Emoji"> | boolean
   guildId?: Prisma.IntWithAggregatesFilter<"Emoji"> | number
   base64Data?: Prisma.StringWithAggregatesFilter<"Emoji"> | string
+  url?: Prisma.StringWithAggregatesFilter<"Emoji"> | string
 }
 
 export type EmojiCreateInput = {
@@ -285,6 +297,7 @@ export type EmojiCreateInput = {
   externalId: string
   animated: boolean
   base64Data: string
+  url: string
   guild: Prisma.GuildCreateNestedOneWithoutEmojisInput
 }
 
@@ -295,6 +308,7 @@ export type EmojiUncheckedCreateInput = {
   animated: boolean
   guildId: number
   base64Data: string
+  url: string
 }
 
 export type EmojiUpdateInput = {
@@ -302,6 +316,7 @@ export type EmojiUpdateInput = {
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
   animated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   base64Data?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
   guild?: Prisma.GuildUpdateOneRequiredWithoutEmojisNestedInput
 }
 
@@ -312,6 +327,7 @@ export type EmojiUncheckedUpdateInput = {
   animated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   guildId?: Prisma.IntFieldUpdateOperationsInput | number
   base64Data?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type EmojiCreateManyInput = {
@@ -321,6 +337,7 @@ export type EmojiCreateManyInput = {
   animated: boolean
   guildId: number
   base64Data: string
+  url: string
 }
 
 export type EmojiUpdateManyMutationInput = {
@@ -328,6 +345,7 @@ export type EmojiUpdateManyMutationInput = {
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
   animated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   base64Data?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type EmojiUncheckedUpdateManyInput = {
@@ -337,6 +355,7 @@ export type EmojiUncheckedUpdateManyInput = {
   animated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   guildId?: Prisma.IntFieldUpdateOperationsInput | number
   base64Data?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type EmojiListRelationFilter = {
@@ -356,6 +375,7 @@ export type EmojiCountOrderByAggregateInput = {
   animated?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
   base64Data?: Prisma.SortOrder
+  url?: Prisma.SortOrder
 }
 
 export type EmojiAvgOrderByAggregateInput = {
@@ -370,6 +390,7 @@ export type EmojiMaxOrderByAggregateInput = {
   animated?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
   base64Data?: Prisma.SortOrder
+  url?: Prisma.SortOrder
 }
 
 export type EmojiMinOrderByAggregateInput = {
@@ -379,6 +400,7 @@ export type EmojiMinOrderByAggregateInput = {
   animated?: Prisma.SortOrder
   guildId?: Prisma.SortOrder
   base64Data?: Prisma.SortOrder
+  url?: Prisma.SortOrder
 }
 
 export type EmojiSumOrderByAggregateInput = {
@@ -437,6 +459,7 @@ export type EmojiCreateWithoutGuildInput = {
   externalId: string
   animated: boolean
   base64Data: string
+  url: string
 }
 
 export type EmojiUncheckedCreateWithoutGuildInput = {
@@ -445,6 +468,7 @@ export type EmojiUncheckedCreateWithoutGuildInput = {
   externalId: string
   animated: boolean
   base64Data: string
+  url: string
 }
 
 export type EmojiCreateOrConnectWithoutGuildInput = {
@@ -482,6 +506,7 @@ export type EmojiScalarWhereInput = {
   animated?: Prisma.BoolFilter<"Emoji"> | boolean
   guildId?: Prisma.IntFilter<"Emoji"> | number
   base64Data?: Prisma.StringFilter<"Emoji"> | string
+  url?: Prisma.StringFilter<"Emoji"> | string
 }
 
 export type EmojiCreateManyGuildInput = {
@@ -490,6 +515,7 @@ export type EmojiCreateManyGuildInput = {
   externalId: string
   animated: boolean
   base64Data: string
+  url: string
 }
 
 export type EmojiUpdateWithoutGuildInput = {
@@ -497,6 +523,7 @@ export type EmojiUpdateWithoutGuildInput = {
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
   animated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   base64Data?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type EmojiUncheckedUpdateWithoutGuildInput = {
@@ -505,6 +532,7 @@ export type EmojiUncheckedUpdateWithoutGuildInput = {
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
   animated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   base64Data?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type EmojiUncheckedUpdateManyWithoutGuildInput = {
@@ -513,6 +541,7 @@ export type EmojiUncheckedUpdateManyWithoutGuildInput = {
   externalId?: Prisma.StringFieldUpdateOperationsInput | string
   animated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   base64Data?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -524,6 +553,7 @@ export type EmojiSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   animated?: boolean
   guildId?: boolean
   base64Data?: boolean
+  url?: boolean
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["emoji"]>
 
@@ -534,6 +564,7 @@ export type EmojiSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   animated?: boolean
   guildId?: boolean
   base64Data?: boolean
+  url?: boolean
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["emoji"]>
 
@@ -544,6 +575,7 @@ export type EmojiSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   animated?: boolean
   guildId?: boolean
   base64Data?: boolean
+  url?: boolean
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["emoji"]>
 
@@ -554,9 +586,10 @@ export type EmojiSelectScalar = {
   animated?: boolean
   guildId?: boolean
   base64Data?: boolean
+  url?: boolean
 }
 
-export type EmojiOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "externalId" | "animated" | "guildId" | "base64Data", ExtArgs["result"]["emoji"]>
+export type EmojiOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "externalId" | "animated" | "guildId" | "base64Data" | "url", ExtArgs["result"]["emoji"]>
 export type EmojiInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
 }
@@ -579,6 +612,7 @@ export type $EmojiPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     animated: boolean
     guildId: number
     base64Data: string
+    url: string
   }, ExtArgs["result"]["emoji"]>
   composites: {}
 }
@@ -1009,6 +1043,7 @@ export interface EmojiFieldRefs {
   readonly animated: Prisma.FieldRef<"Emoji", 'Boolean'>
   readonly guildId: Prisma.FieldRef<"Emoji", 'Int'>
   readonly base64Data: Prisma.FieldRef<"Emoji", 'String'>
+  readonly url: Prisma.FieldRef<"Emoji", 'String'>
 }
     
 

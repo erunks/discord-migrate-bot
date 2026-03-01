@@ -87,7 +87,8 @@ export const EmojiScalarFieldEnum = {
   externalId: 'externalId',
   animated: 'animated',
   guildId: 'guildId',
-  base64Data: 'base64Data'
+  base64Data: 'base64Data',
+  url: 'url'
 } as const
 
 export type EmojiScalarFieldEnum = (typeof EmojiScalarFieldEnum)[keyof typeof EmojiScalarFieldEnum]
@@ -146,6 +147,7 @@ export const StickerScalarFieldEnum = {
   sortValue: 'sortValue',
   tags: 'tags',
   type: 'type',
+  url: 'url',
   guildId: 'guildId'
 } as const
 
