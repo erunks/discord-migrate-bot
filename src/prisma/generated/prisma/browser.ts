@@ -23,6 +23,11 @@ export * from './enums.js';
  */
 export type Guild = Prisma.GuildModel
 /**
+ * Model Emoji
+ * 
+ */
+export type Emoji = Prisma.EmojiModel
+/**
  * Model Role
  * 
  */

@@ -52,6 +52,7 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Guild: 'Guild',
+  Emoji: 'Emoji',
   Role: 'Role',
   Channel: 'Channel',
   ChannelRole: 'ChannelRole'
@@ -77,6 +78,18 @@ export const GuildScalarFieldEnum = {
 } as const
 
 export type GuildScalarFieldEnum = (typeof GuildScalarFieldEnum)[keyof typeof GuildScalarFieldEnum]
+
+
+export const EmojiScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  externalId: 'externalId',
+  animated: 'animated',
+  guildId: 'guildId',
+  base64Data: 'base64Data'
+} as const
+
+export type EmojiScalarFieldEnum = (typeof EmojiScalarFieldEnum)[keyof typeof EmojiScalarFieldEnum]
 
 
 export const RoleScalarFieldEnum = {

@@ -15,8 +15,19 @@ model Guild {
   id Int @id @default(autoincrement())
   name String
   externalId String @unique
+  emojis Emoji[]
   channels Channel[]
   roles Role[]
+}
+
+model Emoji {
+  id Int @id @default(autoincrement())
+  name String
+  externalId String @unique
+  animated Boolean
+  guildId Int
+  base64Data String
+  guild Guild @relation(fields: [guildId], references: [id])
 }
 
 model Role {

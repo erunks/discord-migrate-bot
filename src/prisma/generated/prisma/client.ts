@@ -45,6 +45,11 @@ export { Prisma }
  */
 export type Guild = Prisma.GuildModel
 /**
+ * Model Emoji
+ * 
+ */
+export type Emoji = Prisma.EmojiModel
+/**
  * Model Role
  * 
  */

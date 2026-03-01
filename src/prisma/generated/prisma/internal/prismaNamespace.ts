@@ -385,6 +385,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Guild: 'Guild',
+  Emoji: 'Emoji',
   Role: 'Role',
   Channel: 'Channel',
   ChannelRole: 'ChannelRole'
@@ -403,7 +404,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "guild" | "role" | "channel" | "channelRole"
+    modelProps: "guild" | "emoji" | "role" | "channel" | "channelRole"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -478,6 +479,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.GuildCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.GuildCountAggregateOutputType> | number
+        }
+      }
+    }
+    Emoji: {
+      payload: Prisma.$EmojiPayload<ExtArgs>
+      fields: Prisma.EmojiFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EmojiFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EmojiFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>
+        }
+        findFirst: {
+          args: Prisma.EmojiFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EmojiFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>
+        }
+        findMany: {
+          args: Prisma.EmojiFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>[]
+        }
+        create: {
+          args: Prisma.EmojiCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>
+        }
+        createMany: {
+          args: Prisma.EmojiCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EmojiCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>[]
+        }
+        delete: {
+          args: Prisma.EmojiDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>
+        }
+        update: {
+          args: Prisma.EmojiUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>
+        }
+        deleteMany: {
+          args: Prisma.EmojiDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EmojiUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EmojiUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>[]
+        }
+        upsert: {
+          args: Prisma.EmojiUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>
+        }
+        aggregate: {
+          args: Prisma.EmojiAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEmoji>
+        }
+        groupBy: {
+          args: Prisma.EmojiGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EmojiGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EmojiCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EmojiCountAggregateOutputType> | number
         }
       }
     }
@@ -748,6 +823,18 @@ export const GuildScalarFieldEnum = {
 export type GuildScalarFieldEnum = (typeof GuildScalarFieldEnum)[keyof typeof GuildScalarFieldEnum]
 
 
+export const EmojiScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  externalId: 'externalId',
+  animated: 'animated',
+  guildId: 'guildId',
+  base64Data: 'base64Data'
+} as const
+
+export type EmojiScalarFieldEnum = (typeof EmojiScalarFieldEnum)[keyof typeof EmojiScalarFieldEnum]
+
+
 export const RoleScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -849,6 +936,13 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'Json'
  */
 export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -859,13 +953,6 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
  * Reference to a field of type 'QueryMode'
  */
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -971,6 +1058,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   guild?: Prisma.GuildOmit
+  emoji?: Prisma.EmojiOmit
   role?: Prisma.RoleOmit
   channel?: Prisma.ChannelOmit
   channelRole?: Prisma.ChannelRoleOmit
