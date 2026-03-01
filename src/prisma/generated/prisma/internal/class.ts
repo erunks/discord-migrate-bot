@@ -17,8 +17,8 @@ import type * as Prisma from "./prismaNamespace.js"
 
 const config: runtime.GetPrismaClientConfig = {
   "previewFeatures": [],
-  "clientVersion": "7.4.0",
-  "engineVersion": "ab56fe763f921d033a6c195e7ddeb3e255bdbb57",
+  "clientVersion": "7.4.2",
+  "engineVersion": "94a226be1cf2967af2541cca5529f0f7ba866919",
   "activeProvider": "sqlite",
   "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider   = \"prisma-client\"\n  output     = \"./generated/prisma\"\n  engineType = \"client\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n}\n\nmodel Guild {\n  id         Int       @id @default(autoincrement())\n  name       String\n  externalId String    @unique\n  emojis     Emoji[]\n  channels   Channel[]\n  roles      Role[]\n  stickers   Sticker[]\n}\n\nmodel Emoji {\n  id         Int     @id @default(autoincrement())\n  name       String\n  externalId String  @unique\n  animated   Boolean\n  guildId    Int\n  base64Data String\n  url        String\n  guild      Guild   @relation(fields: [guildId], references: [id])\n}\n\nmodel Role {\n  id          Int           @id @default(autoincrement())\n  name        String\n  externalId  String        @unique\n  colors      Json\n  flags       Json\n  hoist       Boolean\n  mentionable Boolean\n  permissions Json\n  position    Int\n  guildId     Int\n  guild       Guild         @relation(fields: [guildId], references: [id])\n  channels    ChannelRole[]\n}\n\nmodel Channel {\n  id               Int           @id @default(autoincrement())\n  name             String\n  type             String\n  externalId       String        @unique\n  externalParentId String?\n  parent           Channel?      @relation(\"ChannelToParent\", fields: [externalParentId], references: [externalId])\n  children         Channel[]     @relation(\"ChannelToParent\")\n  flags            Json\n  position         Int\n  guildId          Int\n  guild            Guild         @relation(fields: [guildId], references: [id])\n  roles            ChannelRole[]\n}\n\nmodel ChannelRole {\n  id          Int     @id @default(autoincrement())\n  channelId   Int\n  roleId      Int\n  permissions Json\n  channel     Channel @relation(fields: [channelId], references: [id])\n  role        Role    @relation(fields: [roleId], references: [id])\n}\n\nmodel Sticker {\n  id          Int     @id @default(autoincrement())\n  name        String\n  description String\n  externalId  String  @unique\n  available   Boolean\n  formatType  Int\n  base64Data  String\n  packId      String?\n  partial     Boolean\n  sortValue   Int\n  tags        String?\n  type        Int\n  url         String\n  guildId     Int\n  guild       Guild   @relation(fields: [guildId], references: [id])\n}\n",
   "runtimeDataModel": {
@@ -67,7 +67,9 @@ export interface PrismaClientConstructor {
    * Type-safe database client for TypeScript
    * @example
    * ```
-   * const prisma = new PrismaClient()
+   * const prisma = new PrismaClient({
+   *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
+   * })
    * // Fetch zero or more Guilds
    * const guilds = await prisma.guild.findMany()
    * ```
@@ -89,7 +91,9 @@ export interface PrismaClientConstructor {
  * Type-safe database client for TypeScript
  * @example
  * ```
- * const prisma = new PrismaClient()
+ * const prisma = new PrismaClient({
+ *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
+ * })
  * // Fetch zero or more Guilds
  * const guilds = await prisma.guild.findMany()
  * ```
@@ -174,7 +178,7 @@ export interface PrismaClient<
    * ])
    * ```
    * 
-   * Read more in our [docs](https://www.prisma.io/docs/concepts/components/prisma-client/transactions).
+   * Read more in our [docs](https://www.prisma.io/docs/orm/prisma-client/queries/transactions).
    */
   $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): runtime.Types.Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
 
