@@ -3,6 +3,7 @@ import type {
   Emoji,
   NonThreadGuildBasedChannel,
   Role,
+  Sticker,
 } from 'discord.js';
 import { Discord, Slash } from 'discordx';
 import { prisma } from '../../lib/prisma';
@@ -12,7 +13,11 @@ import type {
   Channel,
   Role as PrismaRole,
 } from '../../prisma/generated/prisma/client';
-import { EmojiUncheckedCreateInput, EmojiWhereUniqueInput } from '../../prisma/generated/prisma/models';
+import {
+  EmojiUncheckedCreateInput,
+  EmojiWhereUniqueInput,
+  StickerCreateInput,
+} from '../../prisma/generated/prisma/models';
 
 type findOrCreateChannelRoleOptions = {
   channel: NonThreadGuildBasedChannel;
@@ -74,6 +79,12 @@ class Scraper {
       await interaction.guild?.emojis.fetch().then((emojis) => {
         emojis.forEach(async (emoji) => {
           await this.findOrCreateEmoji(emoji, guildRecord.id);
+        });
+      });
+
+      await interaction.guild?.stickers.fetch().then((stickers) => {
+        stickers.forEach(async (sticker) => {
+          await this.findOrCreateSticker(sticker, guildRecord.id);
         });
       });
 
@@ -183,7 +194,7 @@ class Scraper {
     return record;
   }
 
-  private async getBase64FromUrl(url: string|null): Promise<string> {
+  private async getBase64FromUrl(url: string | null): Promise<string> {
     if (!url) {
       return '';
     }
@@ -199,7 +210,9 @@ class Scraper {
     });
 
     if (!record) {
-      const url = emoji!.imageURL({ extension: emoji!.animated ? 'gif' : 'png' })
+      const url = emoji!.imageURL({
+        extension: emoji!.animated ? 'gif' : 'png',
+      });
       const base64Data = await this.getBase64FromUrl(url);
 
       record = await prisma.emoji.create({
@@ -211,6 +224,37 @@ class Scraper {
           base64Data,
           url,
         } as EmojiUncheckedCreateInput,
+      });
+    }
+
+    return record;
+  }
+
+  private async findOrCreateSticker(sticker: Sticker, guildId: number) {
+    let record = await prisma.sticker.findUnique({
+      where: { externalId: sticker.id },
+    });
+
+    if (!record) {
+      const url = sticker.url;
+      const base64Data = await this.getBase64FromUrl(url);
+
+      record = await prisma.sticker.create({
+        data: {
+          url,
+          externalId: sticker.id,
+          name: sticker.name,
+          available: sticker.available ?? false,
+          base64Data,
+          description: sticker.description,
+          formatType: sticker.format,
+          packId: sticker.packId,
+          partial: sticker.partial,
+          sortValue: sticker.sortValue ?? 0,
+          tags: sticker.tags,
+          type: sticker.type,
+          guild: { connect: { id: guildId } },
+        } as StickerCreateInput,
       });
     }
 
