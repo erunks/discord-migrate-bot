@@ -15,8 +15,21 @@ model Guild {
   id Int @id @default(autoincrement())
   name String
   externalId String @unique
+  emojis Emoji[]
   channels Channel[]
   roles Role[]
+  stickers Sticker[]
+}
+
+model Emoji {
+  id Int @id @default(autoincrement())
+  name String
+  externalId String @unique
+  animated Boolean
+  guildId Int
+  base64Data String
+  url String
+  guild Guild @relation(fields: [guildId], references: [id])
 }
 
 model Role {
@@ -56,4 +69,22 @@ model ChannelRole {
   permissions Json
   channel Channel @relation(fields: [channelId], references: [id])
   role Role @relation(fields: [roleId], references: [id])
+}
+
+model Sticker {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  externalId String @unique
+  available Boolean
+  formatType Int
+  base64Data String
+  packId String?
+  partial Boolean
+  sortValue Int
+  tags String?
+  type Int
+  url String
+  guildId Int
+  guild Guild @relation(fields: [guildId], references: [id])
 }

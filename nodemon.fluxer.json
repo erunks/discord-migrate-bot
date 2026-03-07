@@ -1,0 +1,5 @@
+{
+  "exec": "pnpm build && pnpm start:fluxer",
+  "ext": "ts",
+  "watch": [".env", "src"]
+}

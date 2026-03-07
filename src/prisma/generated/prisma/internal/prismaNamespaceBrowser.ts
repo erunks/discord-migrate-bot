@@ -52,9 +52,11 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Guild: 'Guild',
+  Emoji: 'Emoji',
   Role: 'Role',
   Channel: 'Channel',
-  ChannelRole: 'ChannelRole'
+  ChannelRole: 'ChannelRole',
+  Sticker: 'Sticker'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -77,6 +79,19 @@ export const GuildScalarFieldEnum = {
 } as const
 
 export type GuildScalarFieldEnum = (typeof GuildScalarFieldEnum)[keyof typeof GuildScalarFieldEnum]
+
+
+export const EmojiScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  externalId: 'externalId',
+  animated: 'animated',
+  guildId: 'guildId',
+  base64Data: 'base64Data',
+  url: 'url'
+} as const
+
+export type EmojiScalarFieldEnum = (typeof EmojiScalarFieldEnum)[keyof typeof EmojiScalarFieldEnum]
 
 
 export const RoleScalarFieldEnum = {
@@ -117,6 +132,26 @@ export const ChannelRoleScalarFieldEnum = {
 } as const
 
 export type ChannelRoleScalarFieldEnum = (typeof ChannelRoleScalarFieldEnum)[keyof typeof ChannelRoleScalarFieldEnum]
+
+
+export const StickerScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  externalId: 'externalId',
+  available: 'available',
+  formatType: 'formatType',
+  base64Data: 'base64Data',
+  packId: 'packId',
+  partial: 'partial',
+  sortValue: 'sortValue',
+  tags: 'tags',
+  type: 'type',
+  url: 'url',
+  guildId: 'guildId'
+} as const
+
+export type StickerScalarFieldEnum = (typeof StickerScalarFieldEnum)[keyof typeof StickerScalarFieldEnum]
 
 
 export const SortOrder = {

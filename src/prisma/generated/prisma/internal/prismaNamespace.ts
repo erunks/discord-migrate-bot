@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.4.0
- * Query Engine version: ab56fe763f921d033a6c195e7ddeb3e255bdbb57
+ * Prisma Client JS version: 7.4.2
+ * Query Engine version: 94a226be1cf2967af2541cca5529f0f7ba866919
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.4.0",
-  engine: "ab56fe763f921d033a6c195e7ddeb3e255bdbb57"
+  client: "7.4.2",
+  engine: "94a226be1cf2967af2541cca5529f0f7ba866919"
 }
 
 /**
@@ -385,9 +385,11 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Guild: 'Guild',
+  Emoji: 'Emoji',
   Role: 'Role',
   Channel: 'Channel',
-  ChannelRole: 'ChannelRole'
+  ChannelRole: 'ChannelRole',
+  Sticker: 'Sticker'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -403,7 +405,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "guild" | "role" | "channel" | "channelRole"
+    modelProps: "guild" | "emoji" | "role" | "channel" | "channelRole" | "sticker"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -478,6 +480,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.GuildCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.GuildCountAggregateOutputType> | number
+        }
+      }
+    }
+    Emoji: {
+      payload: Prisma.$EmojiPayload<ExtArgs>
+      fields: Prisma.EmojiFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EmojiFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EmojiFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>
+        }
+        findFirst: {
+          args: Prisma.EmojiFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EmojiFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>
+        }
+        findMany: {
+          args: Prisma.EmojiFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>[]
+        }
+        create: {
+          args: Prisma.EmojiCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>
+        }
+        createMany: {
+          args: Prisma.EmojiCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EmojiCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>[]
+        }
+        delete: {
+          args: Prisma.EmojiDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>
+        }
+        update: {
+          args: Prisma.EmojiUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>
+        }
+        deleteMany: {
+          args: Prisma.EmojiDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EmojiUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EmojiUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>[]
+        }
+        upsert: {
+          args: Prisma.EmojiUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmojiPayload>
+        }
+        aggregate: {
+          args: Prisma.EmojiAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEmoji>
+        }
+        groupBy: {
+          args: Prisma.EmojiGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EmojiGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EmojiCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EmojiCountAggregateOutputType> | number
         }
       }
     }
@@ -703,6 +779,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Sticker: {
+      payload: Prisma.$StickerPayload<ExtArgs>
+      fields: Prisma.StickerFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.StickerFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.StickerFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>
+        }
+        findFirst: {
+          args: Prisma.StickerFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.StickerFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>
+        }
+        findMany: {
+          args: Prisma.StickerFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>[]
+        }
+        create: {
+          args: Prisma.StickerCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>
+        }
+        createMany: {
+          args: Prisma.StickerCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.StickerCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>[]
+        }
+        delete: {
+          args: Prisma.StickerDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>
+        }
+        update: {
+          args: Prisma.StickerUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>
+        }
+        deleteMany: {
+          args: Prisma.StickerDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.StickerUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.StickerUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>[]
+        }
+        upsert: {
+          args: Prisma.StickerUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StickerPayload>
+        }
+        aggregate: {
+          args: Prisma.StickerAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSticker>
+        }
+        groupBy: {
+          args: Prisma.StickerGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StickerGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.StickerCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StickerCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -748,6 +898,19 @@ export const GuildScalarFieldEnum = {
 export type GuildScalarFieldEnum = (typeof GuildScalarFieldEnum)[keyof typeof GuildScalarFieldEnum]
 
 
+export const EmojiScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  externalId: 'externalId',
+  animated: 'animated',
+  guildId: 'guildId',
+  base64Data: 'base64Data',
+  url: 'url'
+} as const
+
+export type EmojiScalarFieldEnum = (typeof EmojiScalarFieldEnum)[keyof typeof EmojiScalarFieldEnum]
+
+
 export const RoleScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -786,6 +949,26 @@ export const ChannelRoleScalarFieldEnum = {
 } as const
 
 export type ChannelRoleScalarFieldEnum = (typeof ChannelRoleScalarFieldEnum)[keyof typeof ChannelRoleScalarFieldEnum]
+
+
+export const StickerScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  externalId: 'externalId',
+  available: 'available',
+  formatType: 'formatType',
+  base64Data: 'base64Data',
+  packId: 'packId',
+  partial: 'partial',
+  sortValue: 'sortValue',
+  tags: 'tags',
+  type: 'type',
+  url: 'url',
+  guildId: 'guildId'
+} as const
+
+export type StickerScalarFieldEnum = (typeof StickerScalarFieldEnum)[keyof typeof StickerScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -849,6 +1032,13 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'Json'
  */
 export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -859,13 +1049,6 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
  * Reference to a field of type 'QueryMode'
  */
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -971,9 +1154,11 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   guild?: Prisma.GuildOmit
+  emoji?: Prisma.EmojiOmit
   role?: Prisma.RoleOmit
   channel?: Prisma.ChannelOmit
   channelRole?: Prisma.ChannelRoleOmit
+  sticker?: Prisma.StickerOmit
 }
 
 /* Types for Logging */

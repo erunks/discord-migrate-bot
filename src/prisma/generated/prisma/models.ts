@@ -9,7 +9,9 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/Guild.js'
+export type * from './models/Emoji.js'
 export type * from './models/Role.js'
 export type * from './models/Channel.js'
 export type * from './models/ChannelRole.js'
+export type * from './models/Sticker.js'
 export type * from './commonInputTypes.js'
